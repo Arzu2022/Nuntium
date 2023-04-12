@@ -15,6 +15,12 @@
 		FA4DEAD829E6968200EE464E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAD729E6968200EE464E /* BaseViewController.swift */; };
 		FA4DEADA29E6983A00EE464E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAD929E6983A00EE464E /* TabBar.swift */; };
 		FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEADB29E698C400EE464E /* HomeViewModel.swift */; };
+		FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEADD29E6AAFB00EE464E /* InitalVC.swift */; };
+		FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEADF29E6AB2500EE464E /* GetStartedVC.swift */; };
+		FA4DEAE329E6AD6100EE464E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FA4DEAE229E6AD6100EE464E /* SnapKit */; };
+		FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAE429E6AE0800EE464E /* InitialViewModel.swift */; };
+		FA4DEAE729E6AE3200EE464E /* GetStartedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */; };
+		FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,11 @@
 		FA4DEAD729E6968200EE464E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FA4DEAD929E6983A00EE464E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		FA4DEADB29E698C400EE464E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		FA4DEADD29E6AAFB00EE464E /* InitalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitalVC.swift; sourceTree = "<group>"; };
+		FA4DEADF29E6AB2500EE464E /* GetStartedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedVC.swift; sourceTree = "<group>"; };
+		FA4DEAE429E6AE0800EE464E /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
+		FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewModel.swift; sourceTree = "<group>"; };
+		FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialCollectionVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4DEAE329E6AD6100EE464E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,12 +75,12 @@
 				FA4DEAD429E695B300EE464E /* Viewmodel */,
 				FA4DEAD329E695A900EE464E /* Model */,
 				FA4DEAD229E6959E00EE464E /* View */,
-				FA4DEABE29E690C900EE464E /* AppDelegate.swift */,
-				FA4DEAC729E690CF00EE464E /* Assets.xcassets */,
-				FA4DEAC929E690CF00EE464E /* LaunchScreen.storyboard */,
-				FA4DEACC29E690CF00EE464E /* Info.plist */,
-				FA4DEAD729E6968200EE464E /* BaseViewController.swift */,
 				FA4DEAD529E6963800EE464E /* Router.swift */,
+				FA4DEAD729E6968200EE464E /* BaseViewController.swift */,
+				FA4DEABE29E690C900EE464E /* AppDelegate.swift */,
+				FA4DEAC929E690CF00EE464E /* LaunchScreen.storyboard */,
+				FA4DEAC729E690CF00EE464E /* Assets.xcassets */,
+				FA4DEACC29E690CF00EE464E /* Info.plist */,
 			);
 			path = Nuntium;
 			sourceTree = "<group>";
@@ -76,8 +88,8 @@
 		FA4DEAD229E6959E00EE464E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FA4DEAC229E690C900EE464E /* HomeVC.swift */,
-				FA4DEAD929E6983A00EE464E /* TabBar.swift */,
+				FA4DEAE929E6BEF900EE464E /* viewcontrollers */,
+				FA4DEAE829E6BEF000EE464E /* views */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,8 +105,29 @@
 			isa = PBXGroup;
 			children = (
 				FA4DEADB29E698C400EE464E /* HomeViewModel.swift */,
+				FA4DEAE429E6AE0800EE464E /* InitialViewModel.swift */,
+				FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */,
 			);
 			path = Viewmodel;
+			sourceTree = "<group>";
+		};
+		FA4DEAE829E6BEF000EE464E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		FA4DEAE929E6BEF900EE464E /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DEAD929E6983A00EE464E /* TabBar.swift */,
+				FA4DEADD29E6AAFB00EE464E /* InitalVC.swift */,
+				FA4DEADF29E6AB2500EE464E /* GetStartedVC.swift */,
+				FA4DEAC229E690C900EE464E /* HomeVC.swift */,
+			);
+			path = viewcontrollers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,6 +146,9 @@
 			dependencies = (
 			);
 			name = Nuntium;
+			packageProductDependencies = (
+				FA4DEAE229E6AD6100EE464E /* SnapKit */,
+			);
 			productName = Nuntium;
 			productReference = FA4DEABB29E690C900EE464E /* Nuntium.app */;
 			productType = "com.apple.product-type.application";
@@ -141,6 +177,9 @@
 				Base,
 			);
 			mainGroup = FA4DEAB229E690C900EE464E;
+			packageReferences = (
+				FA4DEAE129E6AD6000EE464E /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = FA4DEABC29E690C900EE464E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -168,9 +207,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
+				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
 				FA4DEAD829E6968200EE464E /* BaseViewController.swift in Sources */,
+				FA4DEAE729E6AE3200EE464E /* GetStartedViewModel.swift in Sources */,
 				FA4DEAD629E6963800EE464E /* Router.swift in Sources */,
+				FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */,
+				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
+				FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */,
 				FA4DEABF29E690C900EE464E /* AppDelegate.swift in Sources */,
 				FA4DEADA29E6983A00EE464E /* TabBar.swift in Sources */,
 			);
@@ -384,6 +428,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA4DEAE129E6AD6000EE464E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA4DEAE229E6AD6100EE464E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA4DEAE129E6AD6000EE464E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA4DEAB329E690C900EE464E /* Project object */;
 }
