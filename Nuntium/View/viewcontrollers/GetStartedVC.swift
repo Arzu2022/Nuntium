@@ -70,7 +70,7 @@ class GetStartedVC: BaseViewController<GetStartedViewModel> {
     }
     //MARK: UIFUNCTIONS
     @objc func onClickStart(){
-        // go to Login
+        navigationController?.viewControllers = [router.loginVC()]
     }
 
 }

@@ -21,6 +21,14 @@
 		FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAE429E6AE0800EE464E /* InitialViewModel.swift */; };
 		FA4DEAE729E6AE3200EE464E /* GetStartedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */; };
 		FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */; };
+		FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAEC29E7EBEF00EE464E /* LoginVC.swift */; };
+		FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAEE29E7EC0900EE464E /* LoginViewModel.swift */; };
+		FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF129E7EFBA00EE464E /* UITextfield+Extention.swift */; };
+		FA4DEAF429E7FCD100EE464E /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF329E7FCD100EE464E /* UIButton+Extention.swift */; };
+		FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */; };
+		FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */; };
+		FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF929E826F600EE464E /* VerificationVC.swift */; };
+		FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +47,14 @@
 		FA4DEAE429E6AE0800EE464E /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
 		FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewModel.swift; sourceTree = "<group>"; };
 		FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialCollectionVCell.swift; sourceTree = "<group>"; };
+		FA4DEAEC29E7EBEF00EE464E /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		FA4DEAEE29E7EC0900EE464E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		FA4DEAF129E7EFBA00EE464E /* UITextfield+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extention.swift"; sourceTree = "<group>"; };
+		FA4DEAF329E7FCD100EE464E /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
+		FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		FA4DEAF929E826F600EE464E /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
+		FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,7 @@
 		FA4DEABD29E690C900EE464E /* Nuntium */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DEAF029E7EF9800EE464E /* Helper */,
 				FA4DEAD429E695B300EE464E /* Viewmodel */,
 				FA4DEAD329E695A900EE464E /* Model */,
 				FA4DEAD229E6959E00EE464E /* View */,
@@ -107,6 +124,9 @@
 				FA4DEADB29E698C400EE464E /* HomeViewModel.swift */,
 				FA4DEAE429E6AE0800EE464E /* InitialViewModel.swift */,
 				FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */,
+				FA4DEAEE29E7EC0900EE464E /* LoginViewModel.swift */,
+				FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */,
+				FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */,
 			);
 			path = Viewmodel;
 			sourceTree = "<group>";
@@ -126,8 +146,20 @@
 				FA4DEADD29E6AAFB00EE464E /* InitalVC.swift */,
 				FA4DEADF29E6AB2500EE464E /* GetStartedVC.swift */,
 				FA4DEAC229E690C900EE464E /* HomeVC.swift */,
+				FA4DEAEC29E7EBEF00EE464E /* LoginVC.swift */,
+				FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */,
+				FA4DEAF929E826F600EE464E /* VerificationVC.swift */,
 			);
 			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		FA4DEAF029E7EF9800EE464E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DEAF129E7EFBA00EE464E /* UITextfield+Extention.swift */,
+				FA4DEAF329E7FCD100EE464E /* UIButton+Extention.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,13 +238,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */,
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
 				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
+				FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */,
+				FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
+				FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */,
 				FA4DEAD829E6968200EE464E /* BaseViewController.swift in Sources */,
 				FA4DEAE729E6AE3200EE464E /* GetStartedViewModel.swift in Sources */,
+				FA4DEAF429E7FCD100EE464E /* UIButton+Extention.swift in Sources */,
 				FA4DEAD629E6963800EE464E /* Router.swift in Sources */,
+				FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */,
 				FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */,
+				FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */,
+				FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */,
 				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
 				FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */,
 				FA4DEABF29E690C900EE464E /* AppDelegate.swift in Sources */,

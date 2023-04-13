@@ -11,7 +11,7 @@ class BaseViewController<VM>: UIViewController {
 
     var vm :VM
     var router:Router
-    
+    let screenWidth = UIScreen.main.bounds.width
     init(vm:VM,router:Router) {
         self.vm = vm
         self.router = router
