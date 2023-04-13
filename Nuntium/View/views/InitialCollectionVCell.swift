@@ -25,11 +25,16 @@ class InitialCollectionVCell:UICollectionViewCell {
         }
     private func setup() {
         contentView.addSubview(icon)
+        contentView.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.top.bottom.equalToSuperview()
+        }
         icon.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
             make.centerY.equalToSuperview()
             make.height.equalTo(300)
-            make.width.equalTo(250)
         }
     }
     

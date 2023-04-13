@@ -10,21 +10,17 @@ import SnapKit
 
 class InitalVC: BaseViewController<InitialViewModel> {
     //MARK: CLOSURES
-    private lazy var segmentC:UISegmentedControl = {
-        let segmentC = UISegmentedControl(items: vm.dataImage)
-        segmentC.selectedSegmentIndex = 1
-        segmentC.tintColor = .white
-        return segmentC
-    }()
+    private var pageControl = UIPageControl()
+        
     private lazy var collectionV:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 20
-        layout.itemSize = CGSize(width: 250, height: 300)
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: 300, height: 300)
         view.delegate = self
         view.dataSource = self
+        view.showsHorizontalScrollIndicator = false
         view.register(InitialCollectionVCell.self, forCellWithReuseIdentifier: "cell")
         return view
     }()
@@ -43,7 +39,7 @@ class InitalVC: BaseViewController<InitialViewModel> {
     }
     //MARK: FUNCTIONS
     private func setup(){
-        
+
         let mainLabel = UILabel()
         mainLabel.text = "First to know"
         mainLabel.textColor = .black
@@ -58,9 +54,17 @@ class InitalVC: BaseViewController<InitialViewModel> {
         self.view.backgroundColor = .white
         self.view.addSubview(nextBtn)
         self.view.addSubview(collectionV)
-        self.view.addSubview(segmentC)
+        self.view.addSubview(pageControl)
         self.view.addSubview(mainLabel)
         self.view.addSubview(secondLabel)
+        
+        pageControl.center = view.center
+        pageControl.numberOfPages = vm.dataImage.count
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPageIndicatorTintColor = UIColor(named: "PurpleC")
+        pageControl.addTarget(self, action: #selector(pageControlValueChanged), for: .valueChanged)
+        
         
         collectionV.snp.makeConstraints { make in
             make.right.equalToSuperview()
@@ -68,14 +72,18 @@ class InitalVC: BaseViewController<InitialViewModel> {
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
             make.height.equalTo(300)
         }
+        pageControl.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.collectionV.snp.bottom).offset(20)
+        }
         mainLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(collectionV.snp.bottom).offset(60)
+            make.top.equalTo(pageControl.snp.bottom).offset(20)
         }
         secondLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(75)
             make.right.equalToSuperview().offset(-70)
-            make.bottom.equalTo(mainLabel.snp.bottom).offset(24)
+            make.top.equalTo(mainLabel.snp.bottom).offset(24)
         }
         nextBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
@@ -86,6 +94,13 @@ class InitalVC: BaseViewController<InitialViewModel> {
     }
     
     //MARK: UIFUNCTIONS
+    @objc func pageControlValueChanged(sender: UIPageControl) {
+        
+        let indexPath = IndexPath(item: sender.currentPage, section: 0)
+        self.collectionV.scrollToItem(at: indexPath, at: [.centeredVertically, .centeredHorizontally], animated: true)
+        
+    }
+    
     @objc func onClickNext(){
         navigationController?.viewControllers = [router.getStartedVC()]
     }
@@ -100,6 +115,9 @@ extension InitalVC:UICollectionViewDelegate,UICollectionViewDataSource {
         cell.icon.image = vm.dataImage[indexPath.row]
         return cell
     }
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let currentIndex = Int(scrollView.contentOffset.x / (collectionV.frame.size.width/2))
+            pageControl.currentPage = currentIndex
+        }
     
 }
