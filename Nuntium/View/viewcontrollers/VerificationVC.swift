@@ -166,7 +166,7 @@ class VerificationVC: BaseViewController<VerificationViewModel> {
     }
     @objc
     func onClickConfirmBtn(){
-        //next page
+        navigationController?.viewControllers = [router.createNewPasswordVC()]
     }
 }
 extension VerificationVC:UITextFieldDelegate {
@@ -175,20 +175,27 @@ extension VerificationVC:UITextFieldDelegate {
         self.view.endEditing(true)
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            switch textField {
-             case verficitionNum1TextField:
-                verficitionNum1TextField.text = text
-                verficitionNum2TextField.becomeFirstResponder()
-             case verficitionNum2TextField:
-                verficitionNum2TextField.text = text
-                verficitionNum3TextField.becomeFirstResponder()
-             default:
-                 verficitionNum3TextField.text = text
-                 verficitionNum4TextField.resignFirstResponder()
-             }
-        }
-        return true
+       if let _ = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits) {
+           
+//           switch textField {
+//           case verficitionNum1TextField :
+//               verficitionNum1TextField.text = textField.text ?? "" + string
+//               verficitionNum2TextField.becomeFirstResponder()
+//           case verficitionNum2TextField :
+//               verficitionNum2TextField.text = textField.text ?? "" + string
+//               verficitionNum3TextField.becomeFirstResponder()
+//           case verficitionNum3TextField :
+//               verficitionNum3TextField.text = textField.text ?? "" + string
+//               verficitionNum4TextField.becomeFirstResponder()
+//           default:
+//               verficitionNum4TextField.text = textField.text ?? "" + string
+//               verficitionNum4TextField.resignFirstResponder()
+//           }
+           return true
+       } else {
+          return false
        }
+    }
+        
 }
 

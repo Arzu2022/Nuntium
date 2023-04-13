@@ -235,7 +235,7 @@ class LoginVC: BaseViewController<LoginViewModel> {
     }
     @objc
     func onClickSignUp(_ sender: UITapGestureRecognizer){
-       
+        navigationController?.viewControllers = [router.signupVC()]
     }
     @objc
     func onClickShowPassword(){

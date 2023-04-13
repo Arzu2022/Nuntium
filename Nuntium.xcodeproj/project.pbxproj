@@ -29,6 +29,13 @@
 		FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */; };
 		FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF929E826F600EE464E /* VerificationVC.swift */; };
 		FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */; };
+		FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */; };
+		FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */; };
+		FABFC89929E8848C00BE72D2 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89829E8848B00BE72D2 /* SignUpVC.swift */; };
+		FABFC89B29E884A800BE72D2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */; };
+		FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */; };
+		FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */; };
+		FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +62,13 @@
 		FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		FA4DEAF929E826F600EE464E /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
 		FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
+		FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordVC.swift; sourceTree = "<group>"; };
+		FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordViewModel.swift; sourceTree = "<group>"; };
+		FABFC89829E8848B00BE72D2 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicVC.swift; sourceTree = "<group>"; };
+		FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicViewModel.swift; sourceTree = "<group>"; };
+		FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +141,9 @@
 				FA4DEAEE29E7EC0900EE464E /* LoginViewModel.swift */,
 				FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */,
 				FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */,
+				FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */,
+				FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */,
+				FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */,
 			);
 			path = Viewmodel;
 			sourceTree = "<group>";
@@ -135,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */,
+				FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -149,6 +167,9 @@
 				FA4DEAEC29E7EBEF00EE464E /* LoginVC.swift */,
 				FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */,
 				FA4DEAF929E826F600EE464E /* VerificationVC.swift */,
+				FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */,
+				FABFC89829E8848B00BE72D2 /* SignUpVC.swift */,
+				FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -238,24 +259,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */,
 				FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */,
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
 				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
 				FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */,
 				FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
+				FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */,
+				FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */,
 				FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */,
 				FA4DEAD829E6968200EE464E /* BaseViewController.swift in Sources */,
 				FA4DEAE729E6AE3200EE464E /* GetStartedViewModel.swift in Sources */,
 				FA4DEAF429E7FCD100EE464E /* UIButton+Extention.swift in Sources */,
 				FA4DEAD629E6963800EE464E /* Router.swift in Sources */,
+				FABFC89B29E884A800BE72D2 /* SignUpViewModel.swift in Sources */,
 				FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */,
+				FABFC89929E8848C00BE72D2 /* SignUpVC.swift in Sources */,
 				FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */,
+				FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */,
 				FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */,
 				FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */,
 				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
 				FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */,
 				FA4DEABF29E690C900EE464E /* AppDelegate.swift in Sources */,
+				FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */,
 				FA4DEADA29E6983A00EE464E /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

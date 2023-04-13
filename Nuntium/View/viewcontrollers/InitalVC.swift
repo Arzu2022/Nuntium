@@ -14,10 +14,10 @@ class InitalVC: BaseViewController<InitialViewModel> {
         
     private lazy var collectionV:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: 300, height: 300)
+        let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         view.delegate = self
         view.dataSource = self
         view.showsHorizontalScrollIndicator = false
@@ -106,6 +106,8 @@ class InitalVC: BaseViewController<InitialViewModel> {
     }
 }
 extension InitalVC:UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.dataImage.count
     }

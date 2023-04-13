@@ -13,8 +13,21 @@ public protocol RouterProtocol {
     func loginVC() -> UIViewController
     func forgotPassword() -> UIViewController
     func verificationVC() -> UIViewController
+    func createNewPasswordVC() -> UIViewController
+    func signupVC() -> UIViewController
+    func favoriteVC() -> UIViewController
 }
 public class Router:RouterProtocol {
+    
+    public func favoriteVC() -> UIViewController {
+        return FavoriteTopicVC(vm: FavoriteTopicViewModel(), router: self)
+    }
+    public func signupVC() -> UIViewController {
+        return SignUpVC(vm: SignUpViewModel(), router: self)
+    }
+    public func createNewPasswordVC() -> UIViewController {
+        return CreateNewPasswordVC(vm: CreateNewPasswordViewModel(), router: self)
+    }
     public func verificationVC() -> UIViewController {
         return VerificationVC(vm: VerificationViewModel(), router: self)
     }
