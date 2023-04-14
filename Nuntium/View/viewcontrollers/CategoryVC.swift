@@ -1,17 +1,16 @@
 //
-//  FavoriteTopicVC.swift
+//  CategoryVC.swift
 //  Nuntium
 //
-//  Created by AziK's  MAC on 13.04.23.
+//  Created by AziK's  MAC on 15.04.23.
 //
 
 import UIKit
 
-class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
-    
+class CategoryVC: BaseViewController<CategoryViewModel> {
     private lazy var mainLabel:UILabel = {
         let text = UILabel()
-        text.text = "Select your favorite topics"
+        text.text = "Categories"
         text.textColor = .black
         text.numberOfLines = 0
         text.font = UIFont.systemFont(ofSize: 30, weight: .bold)
@@ -19,7 +18,7 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
     }()
     private lazy var secondLabel:UILabel = {
         let text = UILabel()
-        text.text = "Select some of your favorite topics to let us suggest better news for you."
+        text.text = "Many articles in each category"
         text.textColor = UIColor(named:"Grey")
         text.numberOfLines = 0
         text.font = UIFont.systemFont(ofSize: 20, weight: .regular)
@@ -38,26 +37,16 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
         view.register(FavoriteCollectionVCell.self, forCellWithReuseIdentifier: "cell")
         return view
     }()
-    private lazy var nextBtn:UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Next", for: .normal)
-        btn.backgroundColor = UIColor(named: "PurpleC")
-        btn.layer.cornerRadius = 12
-        btn.addTarget(self, action: #selector(onClickNextBtn), for: .touchUpInside)
-        return btn
-    }()
-    //MARK: VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    //MARK: FUNCTIONS
+    // MARK: - FUNCTIONS
     private func setup(){
         self.view.backgroundColor = .white
         self.view.addSubview(mainLabel)
         self.view.addSubview(secondLabel)
         self.view.addSubview(collectionVItems)
-        self.view.addSubview(nextBtn)
         
         mainLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -69,27 +58,19 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
             make.right.equalToSuperview().offset(-20)
             make.top.equalTo(mainLabel.snp.bottom).offset(8)
         }
-        nextBtn.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
-            make.bottom.equalTo(self.view.snp.bottom).offset(-40)
-            make.height.equalTo(48)
-        }
         collectionVItems.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.top.equalTo(secondLabel.snp.bottom).offset(20)
-            make.bottom.equalTo(nextBtn.snp.top)
+            make.bottom.equalToSuperview()
         }
         
     }
-    //MARK: UIFUNCTIONS
-    @objc
-    func onClickNextBtn(){
-        navigationController?.viewControllers = [TabBar()]
-    }
+    // MARK: - UIFUNCTIONS
+
+
 }
-extension FavoriteTopicVC:UICollectionViewDelegate,UICollectionViewDataSource {
+extension CategoryVC:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.data.count
     }

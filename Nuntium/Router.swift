@@ -16,8 +16,22 @@ public protocol RouterProtocol {
     func createNewPasswordVC() -> UIViewController
     func signupVC() -> UIViewController
     func favoriteVC() -> UIViewController
+    func categoryVC() -> UIViewController
+    func bookmarkVC() -> UIViewController
+    func profileVC() -> UIViewController
 }
 public class Router:RouterProtocol {
+    public func categoryVC() -> UIViewController {
+        return CategoryVC(vm: CategoryViewModel(), router: self)
+    }
+    
+    public func bookmarkVC() -> UIViewController {
+        return BookmarkVC(vm: BookmarkViewModel(), router: self)
+    }
+    
+    public func profileVC() -> UIViewController {
+        return ProfileVC(vm: ProfileViewModel(), router: self)
+    }
     
     public func favoriteVC() -> UIViewController {
         return FavoriteTopicVC(vm: FavoriteTopicViewModel(), router: self)

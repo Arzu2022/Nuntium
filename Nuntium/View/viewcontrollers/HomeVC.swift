@@ -103,6 +103,11 @@ class HomeVC: BaseViewController<HomeViewModel>{
         super.viewDidLoad()
         setup()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        clickRecommendColletionV.removeFromSuperview()
+        setup()
+    }
     //MARK: FUNCTIONS
     private func setup(){
         self.view.backgroundColor = .white
@@ -160,6 +165,13 @@ class HomeVC: BaseViewController<HomeViewModel>{
     }
     //MARK: UIFUNCTIONS
     @objc
+    func onClickSave(_ sender : UIButton) {
+        //save
+        let position = sender.convert(CGPoint.zero, to: self.topicCategoryColletionV)
+        guard let index = self.topicCategoryColletionV.indexPathForItem(at: position) else {return}
+        self.showToast(message: "Saved - \(vm.topicCVData[index.row].type)")
+    }
+    @objc
     func onClickSeeAll(){
         self.recommendColletionV.removeFromSuperview()
         self.topicCategoryColletionV.removeFromSuperview()
@@ -177,26 +189,15 @@ class HomeVC: BaseViewController<HomeViewModel>{
 extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
     //MARK: SERACHBAR FUNCTIONS
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//           if searchText == "" {
-//               self.removeListLuggage()
-//           } else {
-//               self.vm.autocompleteGetCargos(filter: searchText).then { [weak self] state in
-//                   DispatchQueue.main.async {
-//                       if state {
-//                           self?.removeListLuggage()
-//                           self?.showListLuggage()
-//                       }
-//                   }
-//
-//               }
-//           }
+   //     print(searchText)
        }
-       func updateSearchResults(for searchController: UISearchController) {
+        func updateSearchResults(for searchController: UISearchController) {
            
        }
        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
            // Perform search
            // searchBar.text = ""
+           print(searchBar.text)
        }
     //MARK: COLLECTIONVIEW FUNCTIONS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -212,27 +213,29 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//            for (index, value) in vm.checkIndexPath.enumerated() {
-//                if value == vm.data[indexPath.row] {
-//                    vm.checkIndexPath.remove(at: index)
-//                    vm.checkIndex = true
-//                    break
-//                }
-//            }
-//            if  !vm.checkIndex {
-//                vm.checkIndexPath.append(vm.data[indexPath.row])
-//                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
-//            } else {
-//                vm.checkIndex = false
-//                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
-//            }
+        if collectionView == categoryCollectionV {
+            for (index, value) in vm.checkIndexPathCategory.enumerated() {
+                if value == vm.categoryCollectionVdata[indexPath.row] {
+                    vm.checkIndexPathCategory.remove(at: index)
+                    vm.checkIndexCategory = true
+                    break
+                }
+            }
+            if  !vm.checkIndexCategory {
+                vm.checkIndexPathCategory.append(vm.categoryCollectionVdata[indexPath.row])
+                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
+            } else {
+                vm.checkIndexCategory = false
+                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
+            }
+        }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCategoryCollectioVCell
             if vm.categoryCollectionVdata[indexPath.row] == "Random" {
                 cell.contentView.backgroundColor = UIColor(named: "PurpleC")
-                cell.mainText.textColor = .white
+             //   cell.mainText.textColor = .white
             }
             cell.mainText.text = vm.categoryCollectionVdata[indexPath.row]
             return cell
@@ -253,6 +256,8 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
             cell.image.image = vm.topicCVData[indexPath.row].image
             cell.title.text = vm.topicCVData[indexPath.row].title
             cell.type.text = vm.topicCVData[indexPath.row].type
+            cell.saveBtn.tag = indexPath.row
+            cell.saveBtn.addTarget(self, action: #selector(onClickSave(_:)), for: .touchUpInside)
             return cell
         }
     }

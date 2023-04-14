@@ -41,6 +41,12 @@
 		FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */; };
 		FABFC8AB29E976B900BE72D2 /* HomeRecommendCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */; };
 		FABFC8AD29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */; };
+		FABFC8AF29EA006900BE72D2 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */; };
+		FABFC8B129EA008000BE72D2 /* BookmarkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B029EA008000BE72D2 /* BookmarkVC.swift */; };
+		FABFC8B329EA009500BE72D2 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B229EA009500BE72D2 /* ProfileVC.swift */; };
+		FABFC8B529EA00AD00BE72D2 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */; };
+		FABFC8B729EA00CA00BE72D2 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B629EA00CA00BE72D2 /* BookmarkViewModel.swift */; };
+		FABFC8B929EA00E900BE72D2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B829EA00E900BE72D2 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +85,12 @@
 		FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopicCVModel.swift; sourceTree = "<group>"; };
 		FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendCVCell.swift; sourceTree = "<group>"; };
 		FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClickRecommendCVCell.swift; sourceTree = "<group>"; };
+		FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
+		FABFC8B029EA008000BE72D2 /* BookmarkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkVC.swift; sourceTree = "<group>"; };
+		FABFC8B229EA009500BE72D2 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		FABFC8B629EA00CA00BE72D2 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
+		FABFC8B829EA00E900BE72D2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +167,9 @@
 				FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */,
 				FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */,
 				FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */,
+				FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */,
+				FABFC8B629EA00CA00BE72D2 /* BookmarkViewModel.swift */,
+				FABFC8B829EA00E900BE72D2 /* ProfileViewModel.swift */,
 			);
 			path = Viewmodel;
 			sourceTree = "<group>";
@@ -185,6 +200,9 @@
 				FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */,
 				FABFC89829E8848B00BE72D2 /* SignUpVC.swift */,
 				FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */,
+				FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */,
+				FABFC8B029EA008000BE72D2 /* BookmarkVC.swift */,
+				FABFC8B229EA009500BE72D2 /* ProfileVC.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -276,14 +294,17 @@
 			files = (
 				FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */,
 				FABFC8A729E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift in Sources */,
+				FABFC8AF29EA006900BE72D2 /* CategoryVC.swift in Sources */,
 				FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */,
 				FABFC8AD29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift in Sources */,
 				FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */,
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
+				FABFC8B529EA00AD00BE72D2 /* CategoryViewModel.swift in Sources */,
 				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
 				FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */,
 				FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */,
 				FABFC8AB29E976B900BE72D2 /* HomeRecommendCVCell.swift in Sources */,
+				FABFC8B729EA00CA00BE72D2 /* BookmarkViewModel.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
 				FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */,
 				FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */,
@@ -297,14 +318,17 @@
 				FABFC89929E8848C00BE72D2 /* SignUpVC.swift in Sources */,
 				FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */,
 				FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */,
+				FABFC8B929EA00E900BE72D2 /* ProfileViewModel.swift in Sources */,
 				FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */,
 				FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */,
 				FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */,
 				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
 				FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */,
 				FA4DEABF29E690C900EE464E /* AppDelegate.swift in Sources */,
+				FABFC8B329EA009500BE72D2 /* ProfileVC.swift in Sources */,
 				FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */,
 				FA4DEADA29E6983A00EE464E /* TabBar.swift in Sources */,
+				FABFC8B129EA008000BE72D2 /* BookmarkVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

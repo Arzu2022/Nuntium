@@ -21,4 +21,6 @@ class HomeViewModel {
         HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
         HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!)
         ]
+    var checkIndexPathCategory:[String] = []
+    var checkIndexCategory:Bool = false
 }

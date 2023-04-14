@@ -21,8 +21,14 @@ class TabBar: UITabBarController {
         tabBar.layer.borderWidth = 1
         tabBar.layer.borderColor = UIColor(white: 0.8, alpha: 0.8).cgColor
         let home = UINavigationController(rootViewController: router.homeVC())
+        let category = UINavigationController(rootViewController: router.categoryVC())
+        let bookmark = UINavigationController(rootViewController: router.bookmarkVC())
+        let profile = UINavigationController(rootViewController: router.profileVC())
         home.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"))
-        viewControllers = [home]
+        category.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "category"), selectedImage: UIImage(named: "category"))
+        bookmark.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "save"), selectedImage: UIImage(named: "save"))
+        profile.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "profile"), selectedImage: UIImage(named: "profile"))
+        viewControllers = [home,category,bookmark,profile]
     }
 
 }

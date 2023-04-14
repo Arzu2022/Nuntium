@@ -44,7 +44,7 @@ class TopicCategryCollectionVCell:UICollectionViewCell {
         contentView.addSubview(image)
         image.addSubview(title)
         image.addSubview(type)
-        image.addSubview(saveBtn)
+        contentView.addSubview(saveBtn)
         contentView.layer.cornerRadius = 16
         image.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()

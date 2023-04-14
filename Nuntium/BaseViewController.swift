@@ -25,4 +25,25 @@ class BaseViewController<VM>: UIViewController {
         super.viewDidLoad()
         
     }
+    func showAlert(message:String,error:Bool) {
+        var alert:UIAlertController
+        if error {
+            alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        } else {
+            alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        }
+            alert.addAction(UIAlertAction(title: "Got it", style: .default))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    func showToast(message: String) {
+            let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            present(toast, animated: true, completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                    toast.dismiss(animated: true, completion: nil)
+                })
+            })
+            
+            
+        }
 }

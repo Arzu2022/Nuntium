@@ -27,7 +27,11 @@ class FavoriteCollectionVCell : UICollectionViewCell {
         contentView.addSubview(mainText)
         contentView.layer.cornerRadius = 16
         contentView.backgroundColor = UIColor(named: "textfield")
-        
+        if contentView.backgroundColor == UIColor(named: "PurpleC"){
+            mainText.textColor = .white
+        } else {
+            mainText.textColor = UIColor(named: "Grey")
+        }
         mainText.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.centerY.equalToSuperview()
