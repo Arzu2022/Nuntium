@@ -36,6 +36,11 @@
 		FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */; };
 		FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */; };
 		FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */; };
+		FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A429E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift */; };
+		FABFC8A729E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A629E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift */; };
+		FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */; };
+		FABFC8AB29E976B900BE72D2 /* HomeRecommendCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */; };
+		FABFC8AD29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +74,11 @@
 		FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicVC.swift; sourceTree = "<group>"; };
 		FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicViewModel.swift; sourceTree = "<group>"; };
 		FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionVCell.swift; sourceTree = "<group>"; };
+		FABFC8A429E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryCollectioVCell.swift; sourceTree = "<group>"; };
+		FABFC8A629E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopicCategryCollectionVCell.swift; sourceTree = "<group>"; };
+		FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopicCVModel.swift; sourceTree = "<group>"; };
+		FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendCVCell.swift; sourceTree = "<group>"; };
+		FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClickRecommendCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +138,7 @@
 		FA4DEAD329E695A900EE464E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +164,10 @@
 			children = (
 				FA4DEAEA29E6C0AE00EE464E /* InitialCollectionVCell.swift */,
 				FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */,
+				FABFC8A429E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift */,
+				FABFC8A629E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift */,
+				FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */,
+				FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -259,12 +274,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */,
+				FABFC8A729E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift in Sources */,
 				FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */,
+				FABFC8AD29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift in Sources */,
 				FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */,
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
 				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
 				FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */,
 				FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */,
+				FABFC8AB29E976B900BE72D2 /* HomeRecommendCVCell.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
 				FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */,
 				FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */,
@@ -279,6 +298,7 @@
 				FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */,
 				FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */,
 				FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */,
+				FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */,
 				FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */,
 				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
 				FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */,

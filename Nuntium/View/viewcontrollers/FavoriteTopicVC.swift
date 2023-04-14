@@ -12,6 +12,7 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
         let text = UILabel()
         text.text = "Select your favorite topics"
         text.textColor = .black
+        text.numberOfLines = 0
         text.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         return text
     }()
@@ -32,7 +33,7 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
         layout.itemSize = CGSize(width: (screenWidth - 56)/2, height: 70)
         view.delegate = self
         view.dataSource = self
-        view.showsHorizontalScrollIndicator = false
+        view.showsVerticalScrollIndicator = false
         view.register(FavoriteCollectionVCell.self, forCellWithReuseIdentifier: "cell")
         return view
     }()
@@ -59,6 +60,7 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
         
         mainLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
         }
         secondLabel.snp.makeConstraints { make in
@@ -101,6 +103,7 @@ extension FavoriteTopicVC:UICollectionViewDelegate,UICollectionViewDataSource {
             if  !vm.checkIndex {
                 vm.checkIndexPath.append(vm.data[indexPath.row])
                 collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
+              //  collectionView.cellForItem(at: indexPath).mainte
             } else {
                 vm.checkIndex = false
                 collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
@@ -108,7 +111,6 @@ extension FavoriteTopicVC:UICollectionViewDelegate,UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FavoriteCollectionVCell
-        cell.isUserInteractionEnabled = true
         cell.mainText.text = vm.data[indexPath.row]
         return cell
     }

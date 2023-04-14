@@ -18,6 +18,8 @@ class TabBar: UITabBarController {
         let router = Router()
         tabBar.tintColor = UIColor(named:"PurpleC")
         tabBar.backgroundColor = .white
+        tabBar.layer.borderWidth = 1
+        tabBar.layer.borderColor = UIColor(white: 0.8, alpha: 0.8).cgColor
         let home = UINavigationController(rootViewController: router.homeVC())
         home.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home"), selectedImage: UIImage(named: "home"))
         viewControllers = [home]
