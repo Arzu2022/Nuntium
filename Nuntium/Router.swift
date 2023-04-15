@@ -19,8 +19,27 @@ public protocol RouterProtocol {
     func categoryVC() -> UIViewController
     func bookmarkVC() -> UIViewController
     func profileVC() -> UIViewController
+    func languageVC() -> UIViewController
+    func termsVC() -> UIViewController
+    func aboutUsVC() -> UIViewController
+    func changePasswordVC() -> UIViewController
 }
 public class Router:RouterProtocol {
+    public func aboutUsVC() -> UIViewController {
+        return AboutUsVC(vm: AboutUsVCViewModel(), router: self)
+    }
+    
+    public func languageVC() -> UIViewController {
+        return LanguageVC(vm: LanguageViewModel(), router: self)
+    }
+    
+    public func termsVC() -> UIViewController {
+        return TermsVC(vm: TermsViewModel(), router: self)
+    }
+    public func changePasswordVC() -> UIViewController {
+        return ChangPasswordVC(vm: ChangePasswordViewModel(), router: self)
+    }
+    
     public func categoryVC() -> UIViewController {
         return CategoryVC(vm: CategoryViewModel(), router: self)
     }

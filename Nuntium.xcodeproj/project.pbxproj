@@ -47,6 +47,16 @@
 		FABFC8B529EA00AD00BE72D2 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */; };
 		FABFC8B729EA00CA00BE72D2 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B629EA00CA00BE72D2 /* BookmarkViewModel.swift */; };
 		FABFC8B929EA00E900BE72D2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8B829EA00E900BE72D2 /* ProfileViewModel.swift */; };
+		FABFC8BB29EB402500BE72D2 /* ProfileCollectioVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8BA29EB402400BE72D2 /* ProfileCollectioVCell.swift */; };
+		FABFC8BD29EB418800BE72D2 /* ProfileCVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8BC29EB418800BE72D2 /* ProfileCVModel.swift */; };
+		FABFC8BF29EB4BF100BE72D2 /* LanguageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8BE29EB4BF100BE72D2 /* LanguageVC.swift */; };
+		FABFC8C129EB4C0500BE72D2 /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8C029EB4C0500BE72D2 /* TermsVC.swift */; };
+		FABFC8C329EB4C1D00BE72D2 /* ChangPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8C229EB4C1D00BE72D2 /* ChangPasswordVC.swift */; };
+		FABFC8C529EB4CAF00BE72D2 /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8C429EB4CAF00BE72D2 /* AboutUsVC.swift */; };
+		FABFC8C729EB4CD700BE72D2 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8C629EB4CD700BE72D2 /* LanguageViewModel.swift */; };
+		FABFC8C929EB4CF800BE72D2 /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8C829EB4CF800BE72D2 /* ChangePasswordViewModel.swift */; };
+		FABFC8CB29EB4D1700BE72D2 /* TermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8CA29EB4D1700BE72D2 /* TermsViewModel.swift */; };
+		FABFC8CD29EB4D3300BE72D2 /* AboutUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8CC29EB4D3300BE72D2 /* AboutUsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +101,16 @@
 		FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		FABFC8B629EA00CA00BE72D2 /* BookmarkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewModel.swift; sourceTree = "<group>"; };
 		FABFC8B829EA00E900BE72D2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		FABFC8BA29EB402400BE72D2 /* ProfileCollectioVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectioVCell.swift; sourceTree = "<group>"; };
+		FABFC8BC29EB418800BE72D2 /* ProfileCVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCVModel.swift; sourceTree = "<group>"; };
+		FABFC8BE29EB4BF100BE72D2 /* LanguageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageVC.swift; sourceTree = "<group>"; };
+		FABFC8C029EB4C0500BE72D2 /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
+		FABFC8C229EB4C1D00BE72D2 /* ChangPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangPasswordVC.swift; sourceTree = "<group>"; };
+		FABFC8C429EB4CAF00BE72D2 /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
+		FABFC8C629EB4CD700BE72D2 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
+		FABFC8C829EB4CF800BE72D2 /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		FABFC8CA29EB4D1700BE72D2 /* TermsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewModel.swift; sourceTree = "<group>"; };
+		FABFC8CC29EB4D3300BE72D2 /* AboutUsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */,
+				FABFC8BC29EB418800BE72D2 /* ProfileCVModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +191,10 @@
 				FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */,
 				FABFC8B629EA00CA00BE72D2 /* BookmarkViewModel.swift */,
 				FABFC8B829EA00E900BE72D2 /* ProfileViewModel.swift */,
+				FABFC8C629EB4CD700BE72D2 /* LanguageViewModel.swift */,
+				FABFC8C829EB4CF800BE72D2 /* ChangePasswordViewModel.swift */,
+				FABFC8CA29EB4D1700BE72D2 /* TermsViewModel.swift */,
+				FABFC8CC29EB4D3300BE72D2 /* AboutUsViewModel.swift */,
 			);
 			path = Viewmodel;
 			sourceTree = "<group>";
@@ -183,6 +208,7 @@
 				FABFC8A629E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift */,
 				FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */,
 				FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */,
+				FABFC8BA29EB402400BE72D2 /* ProfileCollectioVCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -203,6 +229,10 @@
 				FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */,
 				FABFC8B029EA008000BE72D2 /* BookmarkVC.swift */,
 				FABFC8B229EA009500BE72D2 /* ProfileVC.swift */,
+				FABFC8BE29EB4BF100BE72D2 /* LanguageVC.swift */,
+				FABFC8C029EB4C0500BE72D2 /* TermsVC.swift */,
+				FABFC8C229EB4C1D00BE72D2 /* ChangPasswordVC.swift */,
+				FABFC8C429EB4CAF00BE72D2 /* AboutUsVC.swift */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -292,9 +322,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABFC8BF29EB4BF100BE72D2 /* LanguageVC.swift in Sources */,
 				FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */,
 				FABFC8A729E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift in Sources */,
 				FABFC8AF29EA006900BE72D2 /* CategoryVC.swift in Sources */,
+				FABFC8CB29EB4D1700BE72D2 /* TermsViewModel.swift in Sources */,
 				FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */,
 				FABFC8AD29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift in Sources */,
 				FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */,
@@ -305,13 +337,18 @@
 				FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */,
 				FABFC8AB29E976B900BE72D2 /* HomeRecommendCVCell.swift in Sources */,
 				FABFC8B729EA00CA00BE72D2 /* BookmarkViewModel.swift in Sources */,
+				FABFC8C729EB4CD700BE72D2 /* LanguageViewModel.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
 				FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */,
 				FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */,
 				FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */,
+				FABFC8BB29EB402500BE72D2 /* ProfileCollectioVCell.swift in Sources */,
+				FABFC8C329EB4C1D00BE72D2 /* ChangPasswordVC.swift in Sources */,
+				FABFC8C529EB4CAF00BE72D2 /* AboutUsVC.swift in Sources */,
 				FA4DEAD829E6968200EE464E /* BaseViewController.swift in Sources */,
 				FA4DEAE729E6AE3200EE464E /* GetStartedViewModel.swift in Sources */,
 				FA4DEAF429E7FCD100EE464E /* UIButton+Extention.swift in Sources */,
+				FABFC8BD29EB418800BE72D2 /* ProfileCVModel.swift in Sources */,
 				FA4DEAD629E6963800EE464E /* Router.swift in Sources */,
 				FABFC89B29E884A800BE72D2 /* SignUpViewModel.swift in Sources */,
 				FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */,
@@ -321,11 +358,14 @@
 				FABFC8B929EA00E900BE72D2 /* ProfileViewModel.swift in Sources */,
 				FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */,
 				FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */,
+				FABFC8CD29EB4D3300BE72D2 /* AboutUsViewModel.swift in Sources */,
 				FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */,
 				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
 				FA4DEAE029E6AB2500EE464E /* GetStartedVC.swift in Sources */,
 				FA4DEABF29E690C900EE464E /* AppDelegate.swift in Sources */,
 				FABFC8B329EA009500BE72D2 /* ProfileVC.swift in Sources */,
+				FABFC8C929EB4CF800BE72D2 /* ChangePasswordViewModel.swift in Sources */,
+				FABFC8C129EB4C0500BE72D2 /* TermsVC.swift in Sources */,
 				FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */,
 				FA4DEADA29E6983A00EE464E /* TabBar.swift in Sources */,
 				FABFC8B129EA008000BE72D2 /* BookmarkVC.swift in Sources */,
