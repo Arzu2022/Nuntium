@@ -6,6 +6,14 @@
 //
 
 import Foundation
+import Promises
 class ForgotPasswordViewModel {
-    var mail:String = ""
+    let request = AuthRequest()
+    func sendLink(with email:String) -> Promise<Result<Void,Error>> {
+        let promise = Promise<Result<Void,Error>>.pending()
+        request.forgotPasswordViaMail(with: email).then { result in
+            promise.fulfill(result)
+        }
+        return promise
+    }
 }

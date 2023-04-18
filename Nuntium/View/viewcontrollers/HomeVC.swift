@@ -197,7 +197,6 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
            // Perform search
            // searchBar.text = ""
-           print(searchBar.text)
        }
     //MARK: COLLECTIONVIEW FUNCTIONS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -222,8 +222,23 @@ class SignUpVC: BaseViewController<SignUpViewModel> {
     }
     @objc
     func onClickSignup(){
-        //firebase
-        navigationController?.viewControllers = [router.favoriteVC()]
+        if passwordTextField.text != "" && mailTextField.text != "" && repeatPasswordTextField.text != "" && userTextField.text != "" {
+            if passwordTextField.text != repeatPasswordTextField.text {
+                self.showAlert(message: "New passowrd and repeat password are different", error: true)
+            } else {
+                vm.isSigup(with: mailTextField.text!, with: passwordTextField.text!,username: userTextField.text!).then { result in
+                    switch result {
+                    case .success():
+                        self.navigationController?.viewControllers = [self.router.favoriteVC()]
+                        self.showToast(message: "Account is created successfully")
+                    case .failure(let err):
+                        self.showAlert(message: err.localizedDescription, error: true)
+                    }
+                }
+            }
+        } else {
+            self.showAlert(message: "Please, check username, email, password or repeat password", error: true)
+        }
     }
 }
 extension SignUpVC:UITextFieldDelegate {

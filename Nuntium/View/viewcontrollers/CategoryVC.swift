@@ -6,8 +6,12 @@
 //
 
 import UIKit
-
+public protocol SelectedCell {
+    func changeTextColor()
+    func changeBackgroundCell()
+}
 class CategoryVC: BaseViewController<CategoryViewModel> {
+    var delegateCell : SelectedCell? = nil
     private lazy var mainLabel:UILabel = {
         let text = UILabel()
         text.text = "Categories"
@@ -75,7 +79,6 @@ extension CategoryVC:UICollectionViewDelegate,UICollectionViewDataSource {
         return vm.data.count
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
- //       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FavoriteCollectionVCell
             for (index, value) in vm.checkIndexPath.enumerated() {
                 if value == vm.data[indexPath.row] {
                     vm.checkIndexPath.remove(at: index)
@@ -86,11 +89,10 @@ extension CategoryVC:UICollectionViewDelegate,UICollectionViewDataSource {
             if  !vm.checkIndex {
                 vm.checkIndexPath.append(vm.data[indexPath.row])
                 collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
-  //              cell.mainText.textColor = .white
+                delegateCell?.changeTextColor()
             } else {
                 vm.checkIndex = false
                 collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
-  //              cell.mainText.textColor = UIColor(named: "Grey")
             }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

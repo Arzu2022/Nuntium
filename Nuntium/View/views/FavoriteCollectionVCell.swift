@@ -9,7 +9,19 @@ import Foundation
 import UIKit
 import SnapKit
 
-class FavoriteCollectionVCell : UICollectionViewCell {
+class FavoriteCollectionVCell : UICollectionViewCell, SelectedCell {
+    func changeTextColor() {
+        mainText.textColor = .red
+    }
+    
+    func changeBackgroundCell() {
+        
+    }
+    lazy var test:CategoryVC  = {
+        let view = CategoryVC(vm: CategoryViewModel(), router: Router())
+        view.delegateCell = self
+        return view
+    }()
     lazy var mainText:UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "Grey")

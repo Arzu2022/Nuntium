@@ -82,7 +82,7 @@ class VerificationVC: BaseViewController<VerificationViewModel> {
     }()
     private lazy var accountLabel:UILabel = {
         let text = UILabel()
-        text.text = "Didn’t receive an email?"
+        text.text = "Didn’t receive a phone number?"
         text.textColor = UIColor(named: "Grey")
         text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         return text

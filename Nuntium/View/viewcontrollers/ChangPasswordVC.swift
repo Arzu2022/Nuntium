@@ -152,7 +152,22 @@ class ChangPasswordVC: BaseViewController<ChangePasswordViewModel> {
     
     @objc
     func onClickChange(){
-        
+        if repeatPasswordTextField.text != "" && currentPasswordTextField.text != "" && newPasswordTextField.text != "" {
+            if currentPasswordTextField.text == newPasswordTextField.text{
+                self.vm.changePassword(with: repeatPasswordTextField.text!).then { result in
+                    switch result {
+                    case .failure(let err):
+                        self.showAlert(message: err.localizedDescription, error: true)
+                    case .success(()):
+                        self.navigationController?.viewControllers = [self.router.loginVC()]
+                    }
+                }
+            } else {
+                self.showAlert(message: "New password is not equal to Repeat password", error: true)
+            }
+        } else {
+            self.showAlert(message: "Please, fill of them", error: true)
+        }
     }
     @objc
     func onClickShowCurrentPassword(){
@@ -198,32 +213,5 @@ extension ChangPasswordVC:UITextFieldDelegate {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-            if textField == newPasswordTextField {
-                vm.newPassword = text
-            }
-            else if textField == currentPasswordTextField {
-                vm.current = text
-            } else {
-                vm.repeatPassword = text
-            }
-        }
-        textField.resignFirstResponder()
-        return true
-    }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-            if textField == newPasswordTextField {
-                vm.newPassword = text
-            }else if textField == currentPasswordTextField {
-                vm.current = text
-            } else {
-                vm.repeatPassword = text
-            }
-        }
-        textField.resignFirstResponder()
-        return true
     }
 }

@@ -19,6 +19,9 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     }()
     private lazy var profileImage:UIImageView = {
         let icon = UIImageView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onClickProfileImage(_:)))
+        icon.isUserInteractionEnabled = true
+        icon.addGestureRecognizer(tap)
         icon.image = vm.profileImage
         icon.layer.cornerRadius = 36
         icon.layer.masksToBounds = true
@@ -57,6 +60,46 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
         setup()
     }
     // MARK: - FUNCTIONS
+    private func getImage(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker, animated: true)
+    }
+    private func showSuggestProfileImage() {
+        var alert:UIAlertController
+        alert = UIAlertController(title: "Do you want to add or change profile image?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default,handler: { _ in
+            self.getImage()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+    private func showSuggest() {
+        var alert:UIAlertController
+        alert = UIAlertController(title: "Choose one of them", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "delete", style: .default,handler: { _ in
+            self.vm.deleteUser().then { result in
+                switch result {
+                case .success(()):
+                    self.navigationController?.viewControllers = [self.router.loginVC()]
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+                }
+        }))
+        alert.addAction(UIAlertAction(title: "sign out", style: .default,handler: { _ in
+            self.vm.signout().then { result in
+                switch result {
+                case .success(()):
+                    self.navigationController?.viewControllers = [self.router.loginVC()]
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        }))
+            self.present(alert, animated: true, completion: nil)
+        }
     private func setup(){
         self.view.backgroundColor = .white
         self.view.addSubview(mainLabel)
@@ -95,6 +138,10 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     }
     // MARK: - UIFUNCTIONS
     @objc
+    func onClickProfileImage(_ sender:UITapGestureRecognizer){
+        self.showSuggestProfileImage()
+    }
+    @objc
     func onClickButton(_ sender:UIButton){
         let position = sender.convert(CGPoint.zero, to: colletionV)
         guard let index = colletionV.indexPathForItem(at: position) else {return}
@@ -112,7 +159,7 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
             navigationItem.title = ""
             navigationController?.pushViewController(router.aboutUsVC(), animated: true)
         default:
-            self.showToast(message: "clicked - Signout")
+            self.showSuggest()
         }
     }
     @objc
@@ -122,7 +169,27 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     }
 
 }
-extension ProfileVC:UICollectionViewDelegate,UICollectionViewDataSource {
+extension ProfileVC:UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    //MARK: UIMAGEPICKER FUNCTIONS
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[.originalImage] as? UIImage,
+              let imageData = image.jpegData(compressionQuality: 0.75) else {
+            return
+        }
+        vm.addOrUpdateProfilePhoto(data: imageData).then { result in
+            switch result {
+            case .success(()):
+                // refresh profile photo
+                self.showToast(message: "Profile photo is saved succussfully")
+            case .failure(let err):
+                print(err.localizedDescription)
+                self.showAlert(message: err.localizedDescription, error: true)
+            }
+        }
+    }
+    
+    //MARK: COLLECTIONVIEW FUNCTIONS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.data.count
     }

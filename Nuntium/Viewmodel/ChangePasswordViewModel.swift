@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import Promises
+
 class ChangePasswordViewModel {
-    var current:String = ""
-    var newPassword:String = ""
-    var repeatPassword:String = ""
+
     var checkSecureCurrent:Bool = true
     var checkSecureNew:Bool = true
     var checkSecureRepeat:Bool = true
+    let request = AuthRequest()
+    func changePassword(with email:String) -> Promise<Result<Void,Error>> {
+        let promise = Promise<Result<Void,Error>>.pending()
+        request.updatePassword(with: email).then { result in
+            promise.fulfill(result)
+        }
+        return promise
+    }
 }

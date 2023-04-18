@@ -56,23 +56,6 @@ class CreateNewPasswordVC: BaseViewController<CreateNewPasswordViewModel> {
         tf.placeholder = "Repeat New Password"
         return tf
     }()
-    private lazy var accountLabel:UILabel = {
-        let text = UILabel()
-        text.text = "Didn’t receive an email?"
-        text.textColor = UIColor(named: "Grey")
-        text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-        return text
-    }()
-    private lazy var sendAgainBtn:UILabel = {
-        let text = UILabel()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(onClickSendAgain(_ :)))
-        text.addGestureRecognizer(tap)
-        text.isUserInteractionEnabled = true
-        text.text = "Send again"
-        text.textColor = UIColor(named: "Grey")
-        text.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        return text
-    }()
     private lazy var confirmBtn:UIButton = {
         let btn = UIButton()
         btn.setTitle("Confirm", for: .normal)
@@ -100,8 +83,6 @@ class CreateNewPasswordVC: BaseViewController<CreateNewPasswordViewModel> {
         self.view.backgroundColor = .white
         self.view.addSubview(mainLabel)
         self.view.addSubview(secondLabel)
-        self.view.addSubview(accountLabel)
-        self.view.addSubview(sendAgainBtn)
         self.view.addSubview(confirmBtn)
         self.view.addSubview(newPasswordTextField)
         self.view.addSubview(repeatPasswordTextField)
@@ -133,23 +114,11 @@ class CreateNewPasswordVC: BaseViewController<CreateNewPasswordViewModel> {
             make.top.equalTo(repeatPasswordTextField.snp.bottom).offset(16)
             make.height.equalTo(48)
         }
-        accountLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().offset(-30)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-        }
-        sendAgainBtn.snp.makeConstraints { make in
-            make.left.equalTo(accountLabel.snp.right).offset(3)
-            make.bottom.equalTo(accountLabel.snp.bottom)
-        }
     }
     //  MARK: UIFUNCTIONS
     @objc
     func onClickConfirmBtn(){
-        navigationController?.viewControllers = [TabBar()]
-    }
-    @objc
-    func onClickSendAgain(_ sender: UITapGestureRecognizer){
-       // next time
+        navigationController?.viewControllers = [router.loginVC()]
     }
 }
 extension CreateNewPasswordVC:UITextFieldDelegate {

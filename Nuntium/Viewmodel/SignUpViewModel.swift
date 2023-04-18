@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Promises
 class SignUpViewModel {
     var user:String = ""
     var mail:String = ""
@@ -13,4 +14,13 @@ class SignUpViewModel {
     var repeatPassword:String = ""
     var checkSecurePassword:Bool = true
     var checkSecureRepeatPassword:Bool = true
+    let request = AuthRequest()
+    
+    func isSigup(with email:String, with password:String,username:String) -> Promise<Result<Void,Error>>{
+        let promise = Promise<Result<Void,Error>>.pending()
+        request.signUp(with: email, with: password,username: username).then { result in
+            promise.fulfill(result)
+        }
+        return promise
+    }
 }

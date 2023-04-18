@@ -145,6 +145,17 @@ class LoginVC: BaseViewController<LoginViewModel> {
         }
         
     }
+    private func showSuggest() {
+        var alert:UIAlertController
+        alert = UIAlertController(title: "Choose onne of them", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "with email", style: .default,handler: { _ in
+            self.navigationController?.viewControllers = [self.router.forgotPassword()]
+        }))
+        alert.addAction(UIAlertAction(title: "with number", style: .default,handler: { _ in
+            self.navigationController?.viewControllers = [self.router.verificationVC()]
+        }))
+            self.present(alert, animated: true, completion: nil)
+        }
     private func setup(){
         
         self.view.backgroundColor = .white
@@ -219,12 +230,21 @@ class LoginVC: BaseViewController<LoginViewModel> {
     //MARK: UIFUNCTIONS
     @objc
     func onClickForgotBtn(){
-        navigationController?.viewControllers = [router.forgotPassword()]
+        self.showSuggest()
     }
     @objc
     func onClickLoginBtn(){
-        //next page
-    }
+        if passwordTextField.text != "" && mailTextField.text != "" {
+            vm.isLogin(with: mailTextField.text!, with: passwordTextField.text!).then({ result in
+                switch result {
+                case .success():
+                    self.navigationController?.viewControllers = [TabBar()]
+                case .failure(let error):
+                    self.showAlert(message: error.localizedDescription, error: true)
+                }
+            })
+            }
+        }
     @objc
     func onClickGoogleLoginBtn(){
         //next page

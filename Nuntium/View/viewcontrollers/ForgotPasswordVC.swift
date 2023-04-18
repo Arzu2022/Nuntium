@@ -122,7 +122,20 @@ class ForgotPasswordVC: BaseViewController<ForgotPasswordViewModel> {
     }
     @objc
     func onClickNextBtn(){
-        navigationController?.viewControllers = [router.verificationVC()]
+        // firebase
+        if mailTextField.text != "" {
+            vm.sendLink(with: mailTextField.text!).then { result in
+                switch result {
+                case .success(()):
+                    self.navigationController?.viewControllers = [self.router.loginVC()]
+                    self.showToast(message: "Please,check email for creating new password")
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        } else {
+            self.showAlert(message: "Please, fill email", error: true)
+        }
     }
 }
 extension ForgotPasswordVC:UITextFieldDelegate {
@@ -133,18 +146,5 @@ extension ForgotPasswordVC:UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-                vm.mail = text
-        }
-        textField.resignFirstResponder()
-        return true
-    }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-                vm.mail = text
-        }
-        textField.resignFirstResponder()
-        return true
-    }
+
 }
