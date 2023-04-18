@@ -153,16 +153,19 @@ class ChangPasswordVC: BaseViewController<ChangePasswordViewModel> {
     @objc
     func onClickChange(){
         if repeatPasswordTextField.text != "" && currentPasswordTextField.text != "" && newPasswordTextField.text != "" {
-            if currentPasswordTextField.text == newPasswordTextField.text{
-                self.vm.changePassword(with: repeatPasswordTextField.text!).then { result in
-                    switch result {
-                    case .failure(let err):
-                        self.showAlert(message: err.localizedDescription, error: true)
-                    case .success(()):
-                        self.navigationController?.viewControllers = [self.router.loginVC()]
+            if repeatPasswordTextField.text == newPasswordTextField.text {
+                if currentPasswordTextField.text != self.userDefaults.string(forKey: "password") {
+                    self.showAlert(message: "Current password is not correct!!", error: true)
+                } else {
+                    self.vm.changePassword(with: repeatPasswordTextField.text!).then { result in
+                        switch result {
+                        case .failure(let err):
+                            self.showAlert(message: err.localizedDescription, error: true)
+                        case .success(()):
+                            self.navigationController?.viewControllers = [self.router.loginVC()]
+                        }
                     }
-                }
-            } else {
+                }} else {
                 self.showAlert(message: "New password is not equal to Repeat password", error: true)
             }
         } else {

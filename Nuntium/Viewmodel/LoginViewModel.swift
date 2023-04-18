@@ -8,8 +8,8 @@
 import Foundation
 import Promises
 class LoginViewModel {
-    var mail:String = ""
-    var password:String = ""
+//    var mail:String = ""
+//    var password:String = ""
     var checkSecure:Bool = true
     let request = AuthRequest()
     func isLogin(with email:String,with password:String)-> Promise<Result<Void,Error>> {

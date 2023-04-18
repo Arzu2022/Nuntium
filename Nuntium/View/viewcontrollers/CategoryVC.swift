@@ -97,6 +97,7 @@ extension CategoryVC:UICollectionViewDelegate,UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FavoriteCollectionVCell
+        delegateCell = cell
         cell.mainText.text = vm.data[indexPath.row]
         return cell
     }

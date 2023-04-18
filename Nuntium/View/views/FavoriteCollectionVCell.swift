@@ -9,19 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class FavoriteCollectionVCell : UICollectionViewCell, SelectedCell {
-    func changeTextColor() {
-        mainText.textColor = .red
-    }
-    
-    func changeBackgroundCell() {
-        
-    }
-    lazy var test:CategoryVC  = {
-        let view = CategoryVC(vm: CategoryViewModel(), router: Router())
-        view.delegateCell = self
-        return view
-    }()
+class FavoriteCollectionVCell : UICollectionViewCell {
     lazy var mainText:UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "Grey")
@@ -35,18 +23,25 @@ class FavoriteCollectionVCell : UICollectionViewCell, SelectedCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    func updateCell(){
+        mainText.textColor = .white
+    }
     func setup(){
         contentView.addSubview(mainText)
         contentView.layer.cornerRadius = 16
         contentView.backgroundColor = UIColor(named: "textfield")
-        if contentView.backgroundColor == UIColor(named: "PurpleC"){
-            mainText.textColor = .white
-        } else {
-            mainText.textColor = UIColor(named: "Grey")
-        }
         mainText.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.centerY.equalToSuperview()
         }
+    }
+}
+extension FavoriteCollectionVCell : SelectedCell {
+    func changeTextColor() {
+        mainText.textColor = .white
+    }
+    
+    func changeBackgroundCell() {
+        
     }
 }

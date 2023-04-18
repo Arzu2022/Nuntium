@@ -22,7 +22,6 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
         let tap = UITapGestureRecognizer(target: self, action: #selector(onClickProfileImage(_:)))
         icon.isUserInteractionEnabled = true
         icon.addGestureRecognizer(tap)
-        icon.image = vm.profileImage
         icon.layer.cornerRadius = 36
         icon.layer.masksToBounds = true
         return icon
@@ -57,6 +56,9 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            self.addProfileImage()
+        }
         setup()
     }
     // MARK: - FUNCTIONS
@@ -76,6 +78,7 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
             self.present(alert, animated: true, completion: nil)
         }
     private func showSuggest() {
+        self.userDefaults.removeObject(forKey: "password")
         var alert:UIAlertController
         alert = UIAlertController(title: "Choose one of them", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "delete", style: .default,handler: { _ in
@@ -100,6 +103,16 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
         }))
             self.present(alert, animated: true, completion: nil)
         }
+    private func addProfileImage(){
+        self.vm.getProfileImage().then { result in
+            switch result {
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            case .success(let image):
+                self.profileImage.image = image
+            }
+        }
+    }
     private func setup(){
         self.view.backgroundColor = .white
         self.view.addSubview(mainLabel)
@@ -147,17 +160,17 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
         guard let index = colletionV.indexPathForItem(at: position) else {return}
         switch vm.data[index.row].title {
         case "Change Password":
-            navigationItem.title = ""
-            navigationController?.pushViewController(router.changePasswordVC(), animated: true)
+            self.navigationItem.hidesBackButton = false
+            self.navigationController?.pushViewController(router.changePasswordVC(), animated: true)
         case "Language":
-            navigationItem.title = ""
-            navigationController?.pushViewController(router.languageVC(), animated: true)
+            self.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(router.languageVC(), animated: true)
         case "Terms & Conditions":
-            navigationItem.title = ""
-            navigationController?.pushViewController(router.termsVC(), animated: true)
+            self.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(router.termsVC(), animated: true)
         case "About":
-            navigationItem.title = ""
-            navigationController?.pushViewController(router.aboutUsVC(), animated: true)
+            self.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(router.aboutUsVC(), animated: true)
         default:
             self.showSuggest()
         }
@@ -165,7 +178,7 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     @objc
     func onClickSwitch(){
         vm.checkSwitch.toggle()
-        self.showToast(message: "notification- \(vm.checkSwitch)")
+        self.userDefaults.set(vm.checkSwitch, forKey: "notification")
     }
 
 }
@@ -180,7 +193,7 @@ extension ProfileVC:UICollectionViewDelegate,UICollectionViewDataSource,UIImageP
         vm.addOrUpdateProfilePhoto(data: imageData).then { result in
             switch result {
             case .success(()):
-                // refresh profile photo
+                self.addProfileImage()
                 self.showToast(message: "Profile photo is saved succussfully")
             case .failure(let err):
                 print(err.localizedDescription)
@@ -198,6 +211,7 @@ extension ProfileVC:UICollectionViewDelegate,UICollectionViewDataSource,UIImageP
         cell.title.text = vm.data[indexPath.row].title
         if vm.data[indexPath.row].title == "Notifications" {
             cell.switchBtnsetup()
+            cell.switchButton.isOn = (self.userDefaults.object(forKey: "notification") != nil)
             cell.switchButton.addTarget(self, action: #selector(onClickSwitch), for: .valueChanged)
         } else {
             cell.button.setImage(vm.data[indexPath.row].icon, for: .normal)

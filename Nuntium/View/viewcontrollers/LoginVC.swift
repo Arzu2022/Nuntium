@@ -238,6 +238,7 @@ class LoginVC: BaseViewController<LoginViewModel> {
             vm.isLogin(with: mailTextField.text!, with: passwordTextField.text!).then({ result in
                 switch result {
                 case .success():
+                    self.userDefaults.set("\(self.passwordTextField.text!)", forKey: "password")
                     self.navigationController?.viewControllers = [TabBar()]
                 case .failure(let error):
                     self.showAlert(message: error.localizedDescription, error: true)
@@ -281,30 +282,5 @@ extension LoginVC:UITextFieldDelegate {
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-            if textField == mailTextField{
-                vm.mail = text
-            }
-            else if textField == passwordTextField {
-                vm.password = text
-            }
-        }
-        textField.resignFirstResponder()
-        return true
-    }
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if let text = textField.text {
-            if textField == mailTextField{
-                vm.mail = text
-            }
-            else if textField == passwordTextField {
-                vm.password = text
-            }
-        }
-        textField.resignFirstResponder()
-        
-        return true
     }
 }

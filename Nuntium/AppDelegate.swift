@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         let router = Router()
-        let vc = UINavigationController(rootViewController: router.initialVC())
+        var vc = UINavigationController(rootViewController: router.initialVC())
         if let _ = Auth.auth().currentUser {
-            let vc = UINavigationController(rootViewController: TabBar())
+            vc = UINavigationController(rootViewController: TabBar())
         }
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()

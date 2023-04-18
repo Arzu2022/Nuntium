@@ -9,7 +9,6 @@ import Foundation
 import Promises
 
 class ChangePasswordViewModel {
-
     var checkSecureCurrent:Bool = true
     var checkSecureNew:Bool = true
     var checkSecureRepeat:Bool = true

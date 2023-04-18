@@ -49,4 +49,11 @@ class ProfileViewModel {
         }
         return promise
     }
+    func getProfileImage() -> Promise<Result<UIImage,Error>> {
+        let promise = Promise<Result<UIImage,Error>>.pending()
+        stoageRequest.getProfilePhoto().then { result in
+            promise.fulfill(result)
+        }
+        return promise
+    }
 }

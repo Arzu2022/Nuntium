@@ -19,7 +19,7 @@ class AuthRequest:AuthRequestProtocol {
     
     let name = Auth.auth().currentUser?.displayName
     let email = Auth.auth().currentUser?.email
-    
+    let password = Auth.auth().currentUser
     
     func updatePassword(with password: String) -> Promises.Promise<Result<Void, Error>> {
         let promise = Promise<Result<Void,Error>>.pending()
