@@ -8,16 +8,12 @@
 import Foundation
 class FavoriteTopicViewModel {
     var data = [
-        "🏈   Sports",
-        "⚖️   Politics",
-        "🌞   Life",
-        "🎮   Gaming",
-        "🐻   Animals",
-        "🌴   Nature",
-        "🍔   Food",
-        "🎨   Art",
-        "📜   History",
-        "👗   Fashion"
+        "🈺   Business",
+        "👨🏿‍🎤   Entertainment",
+        "🏥   Health",
+        "🧪   Science",
+        "🤼   Sports",
+        "📡   Technology",
     ]
     var checkIndexPath:[String] = []
     var checkIndex:Bool = false

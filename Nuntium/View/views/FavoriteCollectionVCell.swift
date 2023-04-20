@@ -15,7 +15,7 @@ class FavoriteCollectionVCell : UICollectionViewCell {
     lazy var mainText:UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "Grey")
-        text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        text.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         return text
     }()
     override init(frame: CGRect) {
@@ -33,7 +33,7 @@ class FavoriteCollectionVCell : UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.backgroundColor = UIColor(named: "textfield")
         mainText.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
         }
     }

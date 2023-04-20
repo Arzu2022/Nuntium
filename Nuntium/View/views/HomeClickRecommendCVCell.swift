@@ -12,7 +12,8 @@ class HomeClickRecommendCVCell:UICollectionViewCell {
     lazy var title:UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "Grey")
-        text.numberOfLines = 0
+        text.numberOfLines = 2
+        text.lineBreakMode = .byTruncatingTail
         text.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         return text
     }()

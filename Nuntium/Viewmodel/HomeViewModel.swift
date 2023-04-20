@@ -13,23 +13,23 @@ class HomeViewModel {
     let request = NewsRequest()
     var errorMessageTopicCV:String = ""
     var topicCVData:[MainData] = []
+    var recommendCVData: [MainData] = []
     var checkSeeAll:Bool = true
     //comes from firebase
     var categoryCollectionVdata:[String] = ["business","entertainment","health","science","sports","technology"]
     
-    var recommendCVData: [HomeTopicCVModel] = [
-        HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
-        HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!)
-        ]
-    var clickRecommendCVData: [HomeTopicCVModel] = [
-        HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
-        HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!)
-        ]
     var checkIndexCategory:Bool = false
     
-    func getTopicCVData() -> Promise<Result<[MainData],Error>>{
+    func getData(api:API.RawValue) -> Promise<Result<[MainData],Error>>{
         let promise = Promise<Result<[MainData],Error>>.pending()
-        request.getGeneral().then { result in
+        request.getData(api: api).then { result in
+            promise.fulfill(result)
+        }
+        return promise
+    }
+    func searchText(text:String) -> Promise<Result<[MainData],Error>> {
+        let promise = Promise<Result<[MainData],Error>>.pending()
+        request.searchNews(text: text).then { result in
             promise.fulfill(result)
         }
         return promise

@@ -118,7 +118,10 @@ class HomeVC: BaseViewController<HomeViewModel>{
     //MARK: VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-        vm.getTopicCVData().then { result in
+        DispatchQueue.main.async {
+            self.checkTypeRecommendCVData()
+        }
+        vm.getData(api: API.general.rawValue).then { result in
             switch result {
             case .failure(let err):
                 self.showAlert(message: err.localizedDescription, error: true)
@@ -127,8 +130,73 @@ class HomeVC: BaseViewController<HomeViewModel>{
             }
             self.setup()
         }
+        
     }
     //MARK: FUNCTIONS
+    private func checkTypeRecommendCVData(){
+        if vm.categoryCollectionVdata.first == "sport" {
+            vm.getData(api: API.sport.rawValue).then { result in
+                switch result {
+                case .success(let data):
+                    self.vm.recommendCVData = data
+                    self.recommendColletionV.reloadData()
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        } else if vm.categoryCollectionVdata.first == "business" {
+            vm.getData(api: API.business.rawValue).then { result in
+                switch result {
+                case .success(let data):
+                    print(data)
+                    self.vm.recommendCVData.append(contentsOf: data)
+                    self.recommendColletionV.reloadData()
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        } else if vm.categoryCollectionVdata.first == "technology" {
+            vm.getData(api: API.technology.rawValue).then { result in
+                switch result {
+                case .success(let data):
+                    self.vm.recommendCVData = data
+                    self.recommendColletionV.reloadData()
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        } else if vm.categoryCollectionVdata.first == "entertainment" {
+            vm.getData(api: API.entertainment.rawValue).then { result in
+                switch result {
+                case .success(let data):
+                    self.vm.recommendCVData = data
+                    self.recommendColletionV.reloadData()
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        } else if vm.categoryCollectionVdata.first == "health" {
+            vm.getData(api: API.health.rawValue).then { result in
+                switch result {
+                case .success(let data):
+                    self.vm.recommendCVData = data
+                    self.recommendColletionV.reloadData()
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        } else {
+            vm.getData(api: API.science.rawValue).then { result in
+                switch result {
+                case .success(let data):
+                    self.vm.recommendCVData = data
+                    self.recommendColletionV.reloadData()
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                }
+            }
+        }
+    }
     private func setup(){
         self.view.backgroundColor = .white
         self.view.addSubview(mainLabel)
@@ -163,7 +231,7 @@ class HomeVC: BaseViewController<HomeViewModel>{
         topicCategoryColletionV.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.left.equalToSuperview().offset(20)
-            make.top.equalTo(generalLabel.snp.bottom).offset(8)
+            make.top.equalTo(generalLabel.snp.bottom).offset(16)
             make.height.equalTo(220)
         }
         recommendLabel.snp.makeConstraints { make in
@@ -237,11 +305,28 @@ class HomeVC: BaseViewController<HomeViewModel>{
 }
 extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
     //MARK: SERACHBAR FUNCTIONS
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
        }
         func updateSearchResults(for searchController: UISearchController) {
        }
        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+           if searchBar.text != "" || searchBar.text != "" {
+               self.vm.searchText(text: searchBar.text!).then { result in
+                   switch result {
+                   case .failure(let err):
+                       self.showAlert(message: err.localizedDescription, error: true)
+                   case .success(let data):
+                       self.vm.topicCVData = data
+                       self.topicCategoryColletionV.reloadData()
+                       self.showToast(message: "wait a second for getting data")
+                   }
+               }
+           } else {
+               self.showAlert(message: "Write something then click to search!", error: true)
+           }
        }
     //MARK: COLLECTIONVIEW FUNCTIONS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -250,7 +335,7 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
         } else if collectionView == topicCategoryColletionV {
             return vm.topicCVData.count
         } else if collectionView == clickRecommendColletionV {
-            return vm.clickRecommendCVData.count
+            return vm.recommendCVData.count
         } else {
             return vm.recommendCVData.count
         }
@@ -262,7 +347,12 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
                 vm.categoryCollectionVdata = array
             collectionView.reloadData()
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
+            self.checkTypeRecommendCVData()
+            self.clickRecommendColletionV.reloadData()
+            self.clickRecommendColletionV.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            self.showToastForWait(message: "Please, wait a minute for refreshing news")
         }
+        
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionV {
@@ -278,14 +368,52 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
             return cell
         } else if collectionView == recommendColletionV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeRecommendCVCell
-            cell.image.image = vm.recommendCVData[indexPath.row].image
-            cell.title.text = vm.recommendCVData[indexPath.row].title
-            cell.type.text = vm.recommendCVData[indexPath.row].type
+            if self.vm.recommendCVData[indexPath.row].urlToImage == nil {
+                cell.image.image = UIImage(named: "noImage")
+            } else {
+                let url = URL(string: vm.recommendCVData[indexPath.row].urlToImage!)!
+
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if let error = error {
+                        // Handle the error here
+                        self.showAlert(message: error.localizedDescription, error: true)
+                        return
+                    }
+                    
+                    guard let data = data, let image = UIImage(data: data) else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        cell.image.image = image
+                    }
+                }.resume()
+                }
+        cell.title.text = vm.recommendCVData[indexPath.row].title
+        cell.type.text = vm.recommendCVData[indexPath.row].source.name
             return cell
         } else if collectionView == clickRecommendColletionV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeClickRecommendCVCell
-            cell.image.image = vm.clickRecommendCVData[indexPath.row].image
-            cell.title.text = vm.clickRecommendCVData[indexPath.row].title
+            if self.vm.recommendCVData[indexPath.row].urlToImage == nil {
+                cell.image.image = UIImage(named: "noImage")
+            } else {
+                let url = URL(string: vm.recommendCVData[indexPath.row].urlToImage!)!
+
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if let error = error {
+                        // Handle the error here
+                        self.showAlert(message: error.localizedDescription, error: true)
+                        return
+                    }
+                    
+                    guard let data = data, let image = UIImage(data: data) else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        cell.image.image = image
+                    }
+                }.resume()
+                }
+        cell.title.text = vm.recommendCVData[indexPath.row].title
             return cell
         }
         else {
@@ -297,18 +425,13 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
 
                     URLSession.shared.dataTask(with: url) { data, response, error in
                         if let error = error {
-                            // Handle the error here
-                            print("Error: \(error)")
+                            self.showAlert(message: error.localizedDescription, error: true)
                             return
                         }
                         
                         guard let data = data, let image = UIImage(data: data) else {
-                            // Handle the case where the data is nil or the image cannot be created
-                            print("Invalid image data")
                             return
                         }
-                        
-                        // Update the UI on the main thread
                         DispatchQueue.main.async {
                             cell.image.image = image
                         }

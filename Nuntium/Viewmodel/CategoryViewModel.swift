@@ -8,16 +8,12 @@
 import Foundation
 class CategoryViewModel {
     var data = [
-        "🏈   Sports",
-        "⚖️   Politics",
-        "🌞   Life",
-        "🎮   Gaming",
-        "🐻   Animals",
-        "🌴   Nature",
-        "🍔   Food",
-        "🎨   Art",
-        "📜   History",
-        "👗   Fashion"
+        "🈺   Business",
+        "👨🏿‍🎤   Entertainment",
+        "🏥   Health",
+        "🧪   Science",
+        "🤼   Sports",
+        "📡   Technology",
     ]
     var selectedData:[String] = []
     var checkIndex:Bool = true

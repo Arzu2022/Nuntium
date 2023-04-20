@@ -13,7 +13,8 @@ class TopicCategryCollectionVCell:UICollectionViewCell {
     lazy var title:UILabel = {
         let text = UILabel()
         text.textColor = .white
-        text.numberOfLines = 0
+        text.numberOfLines = 3
+        text.lineBreakMode = .byTruncatingTail
         text.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return text
     }()

@@ -145,17 +145,6 @@ class LoginVC: BaseViewController<LoginViewModel> {
         }
         
     }
-    private func showSuggest() {
-        var alert:UIAlertController
-        alert = UIAlertController(title: "Choose onne of them", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "with email", style: .default,handler: { _ in
-            self.navigationController?.viewControllers = [self.router.forgotPassword()]
-        }))
-        alert.addAction(UIAlertAction(title: "with number", style: .default,handler: { _ in
-            self.navigationController?.viewControllers = [self.router.verificationVC()]
-        }))
-            self.present(alert, animated: true, completion: nil)
-        }
     private func setup(){
         
         self.view.backgroundColor = .white
@@ -230,7 +219,7 @@ class LoginVC: BaseViewController<LoginViewModel> {
     //MARK: UIFUNCTIONS
     @objc
     func onClickForgotBtn(){
-        self.showSuggest()
+        self.showToastForWait(message: "Please, check your mail for verification new password")
     }
     @objc
     func onClickLoginBtn(){
@@ -259,7 +248,7 @@ class LoginVC: BaseViewController<LoginViewModel> {
     }
     @objc
     func onClickFaceBookLoginBtn(){
-        //next page
+        self.showToast(message: "Next update)")
     }
     @objc
     func onClickSignUp(_ sender: UITapGestureRecognizer){

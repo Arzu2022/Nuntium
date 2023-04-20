@@ -47,4 +47,14 @@ class BaseViewController<VM>: UIViewController {
             
             
         }
+    func showToastForWait(message: String) {
+            let toast = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            present(toast, animated: true, completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                    toast.dismiss(animated: true, completion: nil)
+                })
+            })
+            
+            
+        }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct HomeTopicCVModel {
+struct BookMarkCVModel {
     var title:String
     var type:String
     var image:UIImage

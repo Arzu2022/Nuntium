@@ -27,10 +27,6 @@
 		FA4DEAF429E7FCD100EE464E /* UIButton+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF329E7FCD100EE464E /* UIButton+Extention.swift */; };
 		FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */; };
 		FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */; };
-		FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAF929E826F600EE464E /* VerificationVC.swift */; };
-		FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */; };
-		FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */; };
-		FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */; };
 		FABFC89929E8848C00BE72D2 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89829E8848B00BE72D2 /* SignUpVC.swift */; };
 		FABFC89B29E884A800BE72D2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */; };
 		FABFC89D29E8911000BE72D2 /* FavoriteTopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */; };
@@ -38,7 +34,6 @@
 		FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */; };
 		FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A429E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift */; };
 		FABFC8A729E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A629E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift */; };
-		FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */; };
 		FABFC8AB29E976B900BE72D2 /* HomeRecommendCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */; };
 		FABFC8AD29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */; };
 		FABFC8AF29EA006900BE72D2 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */; };
@@ -70,6 +65,8 @@
 		FABFC8E829EFEB4100BE72D2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FABFC8E729EFEB4100BE72D2 /* GoogleSignIn */; };
 		FABFC8EE29F1393100BE72D2 /* NewsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8ED29F1393100BE72D2 /* NewsDTO.swift */; };
 		FABFC8F029F13AFC00BE72D2 /* NewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8EF29F13AFC00BE72D2 /* NewsRequest.swift */; };
+		FABFC8F429F1D1D600BE72D2 /* BookMarkCVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8F329F1D1D600BE72D2 /* BookMarkCVModel.swift */; };
+		FABFC8F629F1DA6500BE72D2 /* DataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8F529F1DA6500BE72D2 /* DataBaseRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,10 +91,6 @@
 		FA4DEAF329E7FCD100EE464E /* UIButton+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extention.swift"; sourceTree = "<group>"; };
 		FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
-		FA4DEAF929E826F600EE464E /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
-		FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
-		FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordVC.swift; sourceTree = "<group>"; };
-		FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPasswordViewModel.swift; sourceTree = "<group>"; };
 		FABFC89829E8848B00BE72D2 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTopicVC.swift; sourceTree = "<group>"; };
@@ -105,7 +98,6 @@
 		FABFC8A029E8933F00BE72D2 /* FavoriteCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionVCell.swift; sourceTree = "<group>"; };
 		FABFC8A429E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCategoryCollectioVCell.swift; sourceTree = "<group>"; };
 		FABFC8A629E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopicCategryCollectionVCell.swift; sourceTree = "<group>"; };
-		FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopicCVModel.swift; sourceTree = "<group>"; };
 		FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendCVCell.swift; sourceTree = "<group>"; };
 		FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeClickRecommendCVCell.swift; sourceTree = "<group>"; };
 		FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
@@ -130,6 +122,8 @@
 		FABFC8EC29F11CC300BE72D2 /* Nuntium.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Nuntium.entitlements; sourceTree = "<group>"; };
 		FABFC8ED29F1393100BE72D2 /* NewsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDTO.swift; sourceTree = "<group>"; };
 		FABFC8EF29F13AFC00BE72D2 /* NewsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequest.swift; sourceTree = "<group>"; };
+		FABFC8F329F1D1D600BE72D2 /* BookMarkCVModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookMarkCVModel.swift; sourceTree = "<group>"; };
+		FABFC8F529F1DA6500BE72D2 /* DataBaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +194,7 @@
 		FA4DEAD329E695A900EE464E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FABFC8A829E96C1B00BE72D2 /* HomeTopicCVModel.swift */,
+				FABFC8F329F1D1D600BE72D2 /* BookMarkCVModel.swift */,
 				FABFC8BC29EB418800BE72D2 /* ProfileCVModel.swift */,
 				FABFC8ED29F1393100BE72D2 /* NewsDTO.swift */,
 			);
@@ -215,8 +209,6 @@
 				FA4DEAE629E6AE3200EE464E /* GetStartedViewModel.swift */,
 				FA4DEAEE29E7EC0900EE464E /* LoginViewModel.swift */,
 				FA4DEAF729E8225D00EE464E /* ForgotPasswordViewModel.swift */,
-				FA4DEAFB29E8271A00EE464E /* VerificationViewModel.swift */,
-				FABFC89629E87E6500BE72D2 /* CreateNewPasswordViewModel.swift */,
 				FABFC89A29E884A800BE72D2 /* SignUpViewModel.swift */,
 				FABFC89E29E8912600BE72D2 /* FavoriteTopicViewModel.swift */,
 				FABFC8B429EA00AD00BE72D2 /* CategoryViewModel.swift */,
@@ -253,8 +245,6 @@
 				FA4DEAC229E690C900EE464E /* HomeVC.swift */,
 				FA4DEAEC29E7EBEF00EE464E /* LoginVC.swift */,
 				FA4DEAF529E8224000EE464E /* ForgotPasswordVC.swift */,
-				FA4DEAF929E826F600EE464E /* VerificationVC.swift */,
-				FABFC89429E87E3C00BE72D2 /* CreateNewPasswordVC.swift */,
 				FABFC89829E8848B00BE72D2 /* SignUpVC.swift */,
 				FABFC89C29E8911000BE72D2 /* FavoriteTopicVC.swift */,
 				FABFC8AE29EA006900BE72D2 /* CategoryVC.swift */,
@@ -283,6 +273,7 @@
 				FABFC8DC29ED25F400BE72D2 /* AuthRequest.swift */,
 				FABFC8E429EEC6E900BE72D2 /* StorageRequest.swift */,
 				FABFC8EF29F13AFC00BE72D2 /* NewsRequest.swift */,
+				FABFC8F529F1DA6500BE72D2 /* DataBaseRequest.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -377,7 +368,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABFC8BF29EB4BF100BE72D2 /* LanguageVC.swift in Sources */,
-				FABFC8A929E96C1B00BE72D2 /* HomeTopicCVModel.swift in Sources */,
 				FABFC8A729E9688800BE72D2 /* HomeTopicCategryCollectionVCell.swift in Sources */,
 				FABFC8AF29EA006900BE72D2 /* CategoryVC.swift in Sources */,
 				FABFC8CB29EB4D1700BE72D2 /* TermsViewModel.swift in Sources */,
@@ -395,9 +385,6 @@
 				FABFC8DD29ED25F400BE72D2 /* AuthRequest.swift in Sources */,
 				FABFC8C729EB4CD700BE72D2 /* LanguageViewModel.swift in Sources */,
 				FA4DEADC29E698C400EE464E /* HomeViewModel.swift in Sources */,
-				FABFC89729E87E6500BE72D2 /* CreateNewPasswordViewModel.swift in Sources */,
-				FABFC89529E87E3C00BE72D2 /* CreateNewPasswordVC.swift in Sources */,
-				FA4DEAFA29E826F600EE464E /* VerificationVC.swift in Sources */,
 				FABFC8BB29EB402500BE72D2 /* ProfileCollectioVCell.swift in Sources */,
 				FABFC8C329EB4C1D00BE72D2 /* ChangPasswordVC.swift in Sources */,
 				FABFC8C529EB4CAF00BE72D2 /* AboutUsVC.swift in Sources */,
@@ -407,7 +394,6 @@
 				FABFC8BD29EB418800BE72D2 /* ProfileCVModel.swift in Sources */,
 				FA4DEAD629E6963800EE464E /* Router.swift in Sources */,
 				FABFC89B29E884A800BE72D2 /* SignUpViewModel.swift in Sources */,
-				FA4DEAFC29E8271A00EE464E /* VerificationViewModel.swift in Sources */,
 				FABFC89929E8848C00BE72D2 /* SignUpVC.swift in Sources */,
 				FA4DEADE29E6AAFC00EE464E /* InitalVC.swift in Sources */,
 				FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */,
@@ -416,6 +402,7 @@
 				FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */,
 				FABFC8EE29F1393100BE72D2 /* NewsDTO.swift in Sources */,
 				FABFC8CD29EB4D3300BE72D2 /* AboutUsViewModel.swift in Sources */,
+				FABFC8F429F1D1D600BE72D2 /* BookMarkCVModel.swift in Sources */,
 				FA4DEAF829E8225D00EE464E /* ForgotPasswordViewModel.swift in Sources */,
 				FA4DEAE529E6AE0800EE464E /* InitialViewModel.swift in Sources */,
 				FABFC8F029F13AFC00BE72D2 /* NewsRequest.swift in Sources */,
@@ -426,6 +413,7 @@
 				FABFC8C129EB4C0500BE72D2 /* TermsVC.swift in Sources */,
 				FABFC8A129E8933F00BE72D2 /* FavoriteCollectionVCell.swift in Sources */,
 				FA4DEADA29E6983A00EE464E /* TabBar.swift in Sources */,
+				FABFC8F629F1DA6500BE72D2 /* DataBaseRequest.swift in Sources */,
 				FABFC8B129EA008000BE72D2 /* BookmarkVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
