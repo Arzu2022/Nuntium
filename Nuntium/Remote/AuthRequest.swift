@@ -6,6 +6,8 @@
 //
 import FirebaseAuth
 import Promises
+import Firebase
+import GoogleSignIn
 import UIKit
 protocol AuthRequestProtocol {
     func login(with email:String,with password:String) -> Promise<Result<Void, Error>>
@@ -14,12 +16,49 @@ protocol AuthRequestProtocol {
     func signout() -> Promise<Result<Void,Error>>
     func deleteUser() -> Promise<Result<Void,Error>>
     func updatePassword(with password:String) -> Promise<Result<Void,Error>>
+    func signInGoogle(vc:UIViewController) -> Promise<Result<Void,Error>>
+}
+enum errorCustom : Error {
+    case clientID,clientUser
 }
 class AuthRequest:AuthRequestProtocol {
+    func signInGoogle(vc:UIViewController) -> Promises.Promise<Result<Void, Error>> {
+        let promise = Promise<Result<Void,Error>>.pending()
+        if let clientID = FirebaseApp.app()?.options.clientID {
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
+            GIDSignIn.sharedInstance.signIn(withPresenting: vc) { result, error in
+                if error != nil {
+                    promise.fulfill(.failure(error!))
+                } else {
+                    if let user = result?.user,
+                       let idToken = user.idToken?.tokenString {
+                        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                                       accessToken: user.accessToken.tokenString)
+                        Auth.auth().signIn(with: credential) { result, error in
+                            if let _ = error {
+                                promise.fulfill(.failure(error!))
+                            } else {
+                                promise.fulfill(.success(()))
+                            }
+                        }
+                    } else {
+                        promise.fulfill(.failure(errorCustom.clientUser))
+                    }
+                }
+                
+            }
+                
+            
+        } else {
+            promise.fulfill(.failure(errorCustom.clientID))
+        }
+        return promise
+    }
+    
     
     let name = Auth.auth().currentUser?.displayName
     let email = Auth.auth().currentUser?.email
-    let password = Auth.auth().currentUser
     
     func updatePassword(with password: String) -> Promises.Promise<Result<Void, Error>> {
         let promise = Promise<Result<Void,Error>>.pending()

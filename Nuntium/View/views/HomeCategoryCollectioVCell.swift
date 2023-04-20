@@ -25,7 +25,6 @@ class HomeCategoryCollectioVCell:UICollectionViewCell {
         contentView.addSubview(mainText)
         contentView.layer.cornerRadius = 16
         contentView.backgroundColor = UIColor(named: "textfield")
-        
         mainText.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()

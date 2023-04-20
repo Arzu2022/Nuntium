@@ -79,25 +79,23 @@ extension CategoryVC:UICollectionViewDelegate,UICollectionViewDataSource {
         return vm.data.count
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            for (index, value) in vm.checkIndexPath.enumerated() {
+       
+         for (index, value) in vm.selectedData.enumerated() {
                 if value == vm.data[indexPath.row] {
-                    vm.checkIndexPath.remove(at: index)
-                    vm.checkIndex = true
+                    vm.selectedData.remove(at: index)
+                    vm.checkIndex = false
                     break
                 }
             }
-            if  !vm.checkIndex {
-                vm.checkIndexPath.append(vm.data[indexPath.row])
-                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
-                delegateCell?.changeTextColor()
+            if  vm.checkIndex {
+                vm.selectedData.append(vm.data[indexPath.row])
             } else {
-                vm.checkIndex = false
-                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
+                vm.checkIndex = true
             }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FavoriteCollectionVCell
-        delegateCell = cell
+        cell.collectionView = collectionView
         cell.mainText.text = vm.data[indexPath.row]
         return cell
     }

@@ -19,6 +19,6 @@ class CategoryViewModel {
         "📜   History",
         "👗   Fashion"
     ]
-    var checkIndexPath:[String] = []
-    var checkIndex:Bool = false
+    var selectedData:[String] = []
+    var checkIndex:Bool = true
 }

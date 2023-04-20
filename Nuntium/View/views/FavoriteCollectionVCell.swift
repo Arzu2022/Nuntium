@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 class FavoriteCollectionVCell : UICollectionViewCell {
+    var checkCell = true
+    weak var collectionView:UICollectionView?
     lazy var mainText:UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "Grey")
@@ -18,13 +20,13 @@ class FavoriteCollectionVCell : UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(clickCell(_:)))
+        contentView.addGestureRecognizer(tap)
+        contentView.isUserInteractionEnabled = true
         setup()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    func updateCell(){
-        mainText.textColor = .white
     }
     func setup(){
         contentView.addSubview(mainText)
@@ -35,13 +37,19 @@ class FavoriteCollectionVCell : UICollectionViewCell {
             make.centerY.equalToSuperview()
         }
     }
-}
-extension FavoriteCollectionVCell : SelectedCell {
-    func changeTextColor() {
-        mainText.textColor = .white
-    }
-    
-    func changeBackgroundCell() {
-        
+    @objc
+    func clickCell(_ sender:UIGestureRecognizer){
+        if checkCell {
+            checkCell = false
+            mainText.textColor = .white
+            contentView.backgroundColor = UIColor(named: "PurpleC")
+        } else {
+            checkCell = true
+            mainText.textColor = UIColor(named: "Grey")
+            contentView.backgroundColor = UIColor(named: "textfield")
+        }
+        guard let indexPath = collectionView?.indexPath(for: self) else {return}
+        collectionView?.delegate?.collectionView?(collectionView!, didSelectItemAt: indexPath)
+
     }
 }

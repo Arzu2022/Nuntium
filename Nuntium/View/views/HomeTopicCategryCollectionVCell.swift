@@ -19,13 +19,14 @@ class TopicCategryCollectionVCell:UICollectionViewCell {
     }()
     lazy var type:UILabel = {
         let text = UILabel()
-        text.textColor = UIColor(white: 0.9, alpha: 0.9)
-        text.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        text.textColor = .white
+        text.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         return text
     }()
     lazy var image:UIImageView = {
         let icon = UIImageView()
-        
+        icon.layer.cornerRadius = 16
+        icon.layer.masksToBounds = true
         return icon
     }()
     lazy var saveBtn:UIButton = {
@@ -45,7 +46,6 @@ class TopicCategryCollectionVCell:UICollectionViewCell {
         image.addSubview(title)
         image.addSubview(type)
         contentView.addSubview(saveBtn)
-        contentView.layer.cornerRadius = 16
         image.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }

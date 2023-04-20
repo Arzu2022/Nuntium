@@ -248,7 +248,14 @@ class LoginVC: BaseViewController<LoginViewModel> {
         }
     @objc
     func onClickGoogleLoginBtn(){
-        //next page
+        vm.googleSignIn(vc: self).then { result in
+            switch result {
+            case .success(()):
+                self.navigationController?.viewControllers = [TabBar()]
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            }
+        }
     }
     @objc
     func onClickFaceBookLoginBtn(){

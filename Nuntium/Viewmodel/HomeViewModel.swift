@@ -7,12 +7,16 @@
 
 import Foundation
 import UIKit
+import Promises
 class HomeViewModel {
-    var categoryCollectionVdata:[String] = ["Random","Sport","Daily","Best","Sport","Daily","Best"]
-    var topicCVData:[HomeTopicCVModel] = [
-    HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
-    HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!)
-    ]
+    
+    let request = NewsRequest()
+    var errorMessageTopicCV:String = ""
+    var topicCVData:[MainData] = []
+    var checkSeeAll:Bool = true
+    //comes from firebase
+    var categoryCollectionVdata:[String] = ["business","entertainment","health","science","sports","technology"]
+    
     var recommendCVData: [HomeTopicCVModel] = [
         HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
         HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!)
@@ -21,6 +25,13 @@ class HomeViewModel {
         HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
         HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!)
         ]
-    var checkIndexPathCategory:[String] = []
     var checkIndexCategory:Bool = false
+    
+    func getTopicCVData() -> Promise<Result<[MainData],Error>>{
+        let promise = Promise<Result<[MainData],Error>>.pending()
+        request.getGeneral().then { result in
+            promise.fulfill(result)
+        }
+        return promise
+    }
 }

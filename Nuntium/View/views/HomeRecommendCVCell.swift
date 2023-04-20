@@ -24,7 +24,8 @@ class HomeRecommendCVCell: UICollectionViewCell {
     }()
     lazy var image:UIImageView = {
         let icon = UIImageView()
-        
+        icon.layer.cornerRadius = 12
+        icon.layer.masksToBounds = true
         return icon
     }()
     override init(frame: CGRect) {

@@ -38,10 +38,11 @@ class HomeVC: BaseViewController<HomeViewModel>{
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 16
-        layout.itemSize = CGSize(width: screenWidth/4, height: 30)
+        layout.itemSize = CGSize(width: screenWidth/3, height: 35)
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         view.delegate = self
         view.dataSource = self
+        view.isUserInteractionEnabled = true
         view.showsHorizontalScrollIndicator = false
         view.register(HomeCategoryCollectioVCell.self, forCellWithReuseIdentifier: "cell")
         return view
@@ -50,7 +51,7 @@ class HomeVC: BaseViewController<HomeViewModel>{
        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 16
-        layout.itemSize = CGSize(width: screenWidth/1.5, height: screenHeight/3)
+        layout.itemSize = CGSize(width: screenWidth/1.5, height: 220)
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         view.delegate = self
         view.dataSource = self
@@ -66,12 +67,28 @@ class HomeVC: BaseViewController<HomeViewModel>{
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return text
     }()
+    private lazy var generalLabel:UILabel = {
+        let text = UILabel()
+        text.text = "General news"
+        text.textColor = .black
+        text.numberOfLines = 0
+        text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        return text
+    }()
     private lazy var seeAllBtn:UIButton = {
         let btn = UIButton()
         btn.setTitle("See All", for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
         btn.setTitleColor(UIColor(named:"Grey"), for: .normal)
         btn.addTarget(self, action: #selector(onClickSeeAll), for: .touchUpInside)
+        return btn
+    }()
+    private lazy var seeLessBtn:UIButton = {
+        let btn = UIButton()
+        btn.setTitle("See Less", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        btn.setTitleColor(UIColor(named:"Grey"), for: .normal)
+        btn.addTarget(self, action: #selector(onClickSeeLess), for: .touchUpInside)
         return btn
     }()
     private lazy var recommendColletionV:UICollectionView = {
@@ -90,7 +107,7 @@ class HomeVC: BaseViewController<HomeViewModel>{
        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 16
-        layout.itemSize = CGSize(width: screenWidth-48, height: screenHeight/3.5)
+        layout.itemSize = CGSize(width: screenWidth-48, height: screenHeight/3)
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         view.delegate = self
         view.dataSource = self
@@ -101,12 +118,15 @@ class HomeVC: BaseViewController<HomeViewModel>{
     //MARK: VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        clickRecommendColletionV.removeFromSuperview()
-        setup()
+        vm.getTopicCVData().then { result in
+            switch result {
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            case .success(let data):
+                self.vm.topicCVData = data
+            }
+            self.setup()
+        }
     }
     //MARK: FUNCTIONS
     private func setup(){
@@ -114,12 +134,12 @@ class HomeVC: BaseViewController<HomeViewModel>{
         self.view.addSubview(mainLabel)
         self.view.addSubview(secondLabel)
         self.view.addSubview(searchBar)
-        self.view.addSubview(categoryCollectionV)
         self.view.addSubview(topicCategoryColletionV)
         self.view.addSubview(recommendLabel)
         self.view.addSubview(seeAllBtn)
         self.view.addSubview(recommendColletionV)
-        
+        self.view.addSubview(generalLabel)
+
         mainLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
@@ -134,19 +154,17 @@ class HomeVC: BaseViewController<HomeViewModel>{
             make.centerX.equalToSuperview()
             make.left.equalToSuperview().offset(20)
             make.top.equalTo(secondLabel.snp.bottom).offset(20)
-         //   make.height.equalTo(72)
         }
-        categoryCollectionV.snp.makeConstraints { make in
-            make.right.equalToSuperview()
+        generalLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
-            make.top.equalTo(searchBar.snp.bottom).offset(10)
-            make.height.equalTo(48)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(searchBar.snp.bottom).offset(8)
         }
         topicCategoryColletionV.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.left.equalToSuperview().offset(20)
-            make.top.equalTo(categoryCollectionV.snp.bottom).offset(16)
-            make.height.equalTo(screenHeight/3)
+            make.top.equalTo(generalLabel.snp.bottom).offset(8)
+            make.height.equalTo(220)
         }
         recommendLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -160,7 +178,7 @@ class HomeVC: BaseViewController<HomeViewModel>{
             make.right.equalToSuperview().offset(-20)
             make.left.equalToSuperview().offset(20)
             make.top.equalTo(recommendLabel.snp.bottom).offset(16)
-            make.height.equalTo(96)
+            make.bottom.equalToSuperview().offset(-60)
         }
     }
     //MARK: UIFUNCTIONS
@@ -169,34 +187,61 @@ class HomeVC: BaseViewController<HomeViewModel>{
         //save
         let position = sender.convert(CGPoint.zero, to: self.topicCategoryColletionV)
         guard let index = self.topicCategoryColletionV.indexPathForItem(at: position) else {return}
-        self.showToast(message: "Saved - \(vm.topicCVData[index.row].type)")
+        self.showToast(message: "Saved - \(vm.topicCVData[index.row].title ?? "")")
+    }
+    @objc
+    func onClickSeeLess(){
+        self.categoryCollectionV.removeFromSuperview()
+        self.clickRecommendColletionV.removeFromSuperview()
+        self.seeLessBtn.removeFromSuperview()
+        self.recommendLabel.removeFromSuperview()
+        setup()
+        recommendLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     }
     @objc
     func onClickSeeAll(){
         self.recommendColletionV.removeFromSuperview()
         self.topicCategoryColletionV.removeFromSuperview()
-        self.recommendLabel.removeFromSuperview()
         self.seeAllBtn.removeFromSuperview()
+        self.searchBar.removeFromSuperview()
+        self.generalLabel.removeFromSuperview()
+        
         self.view.addSubview(clickRecommendColletionV)
+        self.view.addSubview(categoryCollectionV)
+        self.view.addSubview(seeLessBtn)
+        
+        recommendLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        
+        recommendLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(secondLabel.snp.bottom).offset(20)
+        }
+        seeLessBtn.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-20)
+            make.centerY.equalTo(recommendLabel.snp.centerY)
+        }
+        categoryCollectionV.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(seeLessBtn.snp.bottom).offset(8)
+            make.height.equalTo(48)
+        }
+        
         clickRecommendColletionV.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(24)
             make.right.equalToSuperview().offset(-24)
-            make.top.equalTo(categoryCollectionV.snp.bottom)
+            make.top.equalTo(categoryCollectionV.snp.bottom).offset(12)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }
 extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBarDelegate {
     //MARK: SERACHBAR FUNCTIONS
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-   //     print(searchText)
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
        }
         func updateSearchResults(for searchController: UISearchController) {
-           
        }
        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-           // Perform search
-           // searchBar.text = ""
        }
     //MARK: COLLECTIONVIEW FUNCTIONS
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -213,30 +258,23 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollectionV {
-            for (index, value) in vm.checkIndexPathCategory.enumerated() {
-                if value == vm.categoryCollectionVdata[indexPath.row] {
-                    vm.checkIndexPathCategory.remove(at: index)
-                    vm.checkIndexCategory = true
-                    break
-                }
-            }
-            if  !vm.checkIndexCategory {
-                vm.checkIndexPathCategory.append(vm.categoryCollectionVdata[indexPath.row])
-                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
-            } else {
-                vm.checkIndexCategory = false
-                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
-            }
+            let array = vm.categoryCollectionVdata.sorted(by: { $0 ==  vm.categoryCollectionVdata[indexPath.row] && $1 != vm.categoryCollectionVdata[indexPath.row]})
+                vm.categoryCollectionVdata = array
+            collectionView.reloadData()
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .left, animated: true)
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoryCollectionV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCategoryCollectioVCell
-            if vm.categoryCollectionVdata[indexPath.row] == "Random" {
-                cell.contentView.backgroundColor = UIColor(named: "PurpleC")
-             //   cell.mainText.textColor = .white
-            }
             cell.mainText.text = vm.categoryCollectionVdata[indexPath.row]
+            if indexPath.row == 0 {
+                cell.mainText.textColor = .white
+                cell.contentView.backgroundColor = UIColor(named: "PurpleC")
+            } else {
+                cell.mainText.textColor = UIColor(named: "Grey")
+                cell.contentView.backgroundColor = UIColor(named: "textfield")
+            }
             return cell
         } else if collectionView == recommendColletionV {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeRecommendCVCell
@@ -252,9 +290,32 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
         }
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TopicCategryCollectionVCell
-            cell.image.image = vm.topicCVData[indexPath.row].image
+                if self.vm.topicCVData[indexPath.row].urlToImage == nil {
+                    cell.image.image = UIImage(named: "noImage")
+                } else {
+                    let url = URL(string: vm.topicCVData[indexPath.row].urlToImage!)!
+
+                    URLSession.shared.dataTask(with: url) { data, response, error in
+                        if let error = error {
+                            // Handle the error here
+                            print("Error: \(error)")
+                            return
+                        }
+                        
+                        guard let data = data, let image = UIImage(data: data) else {
+                            // Handle the case where the data is nil or the image cannot be created
+                            print("Invalid image data")
+                            return
+                        }
+                        
+                        // Update the UI on the main thread
+                        DispatchQueue.main.async {
+                            cell.image.image = image
+                        }
+                    }.resume()
+                    }
             cell.title.text = vm.topicCVData[indexPath.row].title
-            cell.type.text = vm.topicCVData[indexPath.row].type
+            cell.type.text = vm.topicCVData[indexPath.row].source.name
             cell.saveBtn.tag = indexPath.row
             cell.saveBtn.addTarget(self, action: #selector(onClickSave(_:)), for: .touchUpInside)
             return cell
