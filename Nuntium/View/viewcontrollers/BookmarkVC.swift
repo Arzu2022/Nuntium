@@ -115,8 +115,26 @@ extension BookmarkVC:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeRecommendCVCell
         cell.title.text = vm.data[indexPath.row].title
-        cell.type.text = vm.data[indexPath.row].type
-        cell.image.image = vm.data[indexPath.row].image
+        cell.type.text = vm.data[indexPath.row].source.name
+        if self.vm.data[indexPath.row].urlToImage == nil {
+            cell.image.image = UIImage(named: "noImage")
+        } else {
+            let url = URL(string: vm.data[indexPath.row].urlToImage!)!
+
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    self.showAlert(message: error.localizedDescription, error: true)
+                    return
+                }
+                
+                guard let data = data, let image = UIImage(data: data) else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    cell.image.image = image
+                }
+            }.resume()
+            }
         return cell
     }
     

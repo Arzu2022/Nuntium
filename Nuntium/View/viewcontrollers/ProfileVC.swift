@@ -22,6 +22,7 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
         let tap = UITapGestureRecognizer(target: self, action: #selector(onClickProfileImage(_:)))
         icon.isUserInteractionEnabled = true
         icon.addGestureRecognizer(tap)
+        icon.image = UIImage(named: "noUser")
         icon.layer.cornerRadius = 36
         icon.layer.masksToBounds = true
         return icon
@@ -56,10 +57,8 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.addProfileImage()
-        }
-        setup()
+        self.addProfileImage()
+       // setup()
     }
     // MARK: - FUNCTIONS
     private func getImage(){
@@ -106,11 +105,13 @@ class ProfileVC: BaseViewController<ProfileViewModel> {
     private func addProfileImage(){
         self.vm.getProfileImage().then { result in
             switch result {
-            case .failure(let err):
-                self.showAlert(message: err.localizedDescription, error: true)
+            case .failure(_):
+                self.showAlert(message: "You didn't add photo", error: false)
             case .success(let image):
                 self.profileImage.image = image
             }
+        }.then { result in
+            self.setup()
         }
     }
     private func setup(){

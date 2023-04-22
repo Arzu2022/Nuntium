@@ -32,14 +32,22 @@ class CategoryVC: BaseViewController<CategoryViewModel> {
         let layout = UICollectionViewFlowLayout()
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 16
-        layout.minimumInteritemSpacing = 16
-        layout.itemSize = CGSize(width: (screenWidth - 56)/2, height: 70)
+        layout.minimumInteritemSpacing = 24
+        layout.minimumLineSpacing = 24
+        layout.itemSize = CGSize(width: (screenWidth - 64)/2, height: 70)
         view.delegate = self
         view.dataSource = self
         view.showsVerticalScrollIndicator = false
         view.register(FavoriteCollectionVCell.self, forCellWithReuseIdentifier: "cell")
         return view
+    }()
+    private lazy var saveBtn:UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Save", for: .normal)
+        btn.backgroundColor = UIColor(named: "PurpleC")
+        btn.layer.cornerRadius = 12
+        btn.addTarget(self, action: #selector(onClickSaveBtn), for: .touchUpInside)
+        return btn
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +59,7 @@ class CategoryVC: BaseViewController<CategoryViewModel> {
         self.view.addSubview(mainLabel)
         self.view.addSubview(secondLabel)
         self.view.addSubview(collectionVItems)
+        self.view.addSubview(saveBtn)
         
         mainLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -62,16 +71,32 @@ class CategoryVC: BaseViewController<CategoryViewModel> {
             make.right.equalToSuperview().offset(-20)
             make.top.equalTo(mainLabel.snp.bottom).offset(8)
         }
+        saveBtn.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.bottom.equalTo(self.view.snp.bottom).offset(-100)
+            make.height.equalTo(48)
+        }
         collectionVItems.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.top.equalTo(secondLabel.snp.bottom).offset(20)
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(saveBtn.snp.top)
         }
-        
     }
     // MARK: - UIFUNCTIONS
-
+    @objc
+    func onClickSaveBtn(){
+        vm.request.addCategory(data: vm.selectedData).then { result in
+            switch result {
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            case .success(()):
+                self.vm.selectedData = []
+                self.showToast(message: "data succesfully saved")
+            }
+        }
+    }
 
 }
 extension CategoryVC:UICollectionViewDelegate,UICollectionViewDataSource {

@@ -6,12 +6,12 @@
 //
 
 import Foundation
-public struct NewsDTO:Decodable{
+public struct NewsDTO:Codable{
    public let status:String
    public let totalResults:Int
    public let articles:[MainData]
 }
-public struct MainData:Decodable {
+public struct MainData:Codable {
     let source:Source
     let author:String?
     let title:String?
@@ -21,7 +21,7 @@ public struct MainData:Decodable {
     let urlToImage:String?
     let content:String?
 }
-struct Source:Decodable{
+struct Source:Codable{
     let id:String?
     let name:String?
 }

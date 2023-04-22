@@ -118,9 +118,7 @@ class HomeVC: BaseViewController<HomeViewModel>{
     //MARK: VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.checkTypeRecommendCVData()
-        }
+        
         vm.getData(api: API.general.rawValue).then { result in
             switch result {
             case .failure(let err):
@@ -128,11 +126,22 @@ class HomeVC: BaseViewController<HomeViewModel>{
             case .success(let data):
                 self.vm.topicCVData = data
             }
+        }.then { result in
+            self.checkTypeRecommendCVData()
+        }.then { result in
             self.setup()
         }
         
     }
     //MARK: FUNCTIONS
+    private func checkSpacing(text:String)->Bool {
+        for i in text{
+            if i == " "{
+                return false
+            }
+        }
+        return true
+    }
     private func checkTypeRecommendCVData(){
         if vm.categoryCollectionVdata.first == "sport" {
             vm.getData(api: API.sport.rawValue).then { result in
@@ -255,7 +264,14 @@ class HomeVC: BaseViewController<HomeViewModel>{
         //save
         let position = sender.convert(CGPoint.zero, to: self.topicCategoryColletionV)
         guard let index = self.topicCategoryColletionV.indexPathForItem(at: position) else {return}
-        self.showToast(message: "Saved - \(vm.topicCVData[index.row].title ?? "")")
+        vm.requestDB.saveData(data: vm.topicCVData[index.row]).then { result in
+            switch result {
+                case .success(()):
+                self.showToast(message: "Saved")
+                case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            }
+        }
     }
     @objc
     func onClickSeeLess(){
@@ -313,17 +329,21 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
         func updateSearchResults(for searchController: UISearchController) {
        }
        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-           if searchBar.text != "" || searchBar.text != "" {
-               self.vm.searchText(text: searchBar.text!).then { result in
-                   switch result {
-                   case .failure(let err):
-                       self.showAlert(message: err.localizedDescription, error: true)
-                   case .success(let data):
-                       self.vm.topicCVData = data
-                       self.topicCategoryColletionV.reloadData()
-                       self.showToast(message: "wait a second for getting data")
+           if searchBar.text != "" {
+               if checkSpacing(text:searchBar.text!) {
+                   self.vm.searchText(text: searchBar.text!).then { result in
+                       switch result {
+                       case .failure(let err):
+                           self.showAlert(message: err.localizedDescription, error: true)
+                       case .success(let data):
+                           if data.count != 0 {
+                               self.vm.topicCVData = data
+                               self.topicCategoryColletionV.reloadData()
+                           }
+                       }
+                   }} else {
+                       self.showAlert(message: "Add only a word, not spacing", error: true)
                    }
-               }
            } else {
                self.showAlert(message: "Write something then click to search!", error: true)
            }
@@ -351,7 +371,12 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
             self.clickRecommendColletionV.reloadData()
             self.clickRecommendColletionV.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
             self.showToastForWait(message: "Please, wait a minute for refreshing news")
+        } else if collectionView == topicCategoryColletionV {
+            self.navigationController?.pushViewController(router.newsDidSelectVC(data: self.vm.topicCVData[indexPath.row]), animated: true)
+        } else if collectionView == clickRecommendColletionV {
+            self.navigationController?.pushViewController(router.newsDidSelectVC(data: self.vm.recommendCVData[indexPath.row]), animated: true)
         }
+        
         
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -413,7 +438,9 @@ extension HomeVC :UICollectionViewDelegate,UICollectionViewDataSource,UISearchBa
                     }
                 }.resume()
                 }
-        cell.title.text = vm.recommendCVData[indexPath.row].title
+            cell.title.text = vm.recommendCVData[indexPath.row].title
+            cell.saveBtn.tag = indexPath.row
+            cell.saveBtn.addTarget(self, action: #selector(onClickSave(_:)), for: .touchUpInside)
             return cell
         }
         else {

@@ -7,6 +7,7 @@
 
 import Foundation
 class CategoryViewModel {
+    let request = DataBaseRequest()
     var data = [
         "🈺   Business",
         "👨🏿‍🎤   Entertainment",

@@ -7,6 +7,7 @@
 
 import Foundation
 class FavoriteTopicViewModel {
+    let requestDB = DataBaseRequest()
     var data = [
         "🈺   Business",
         "👨🏿‍🎤   Entertainment",

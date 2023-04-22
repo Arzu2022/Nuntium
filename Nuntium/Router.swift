@@ -12,8 +12,6 @@ public protocol RouterProtocol {
     func getStartedVC() -> UIViewController
     func loginVC() -> UIViewController
     func forgotPassword() -> UIViewController
-    func verificationVC() -> UIViewController
-    func createNewPasswordVC() -> UIViewController
     func signupVC() -> UIViewController
     func favoriteVC() -> UIViewController
     func categoryVC() -> UIViewController
@@ -23,8 +21,13 @@ public protocol RouterProtocol {
     func termsVC() -> UIViewController
     func aboutUsVC() -> UIViewController
     func changePasswordVC() -> UIViewController
+    func newsDidSelectVC(data:MainData) -> UIViewController
 }
 public class Router:RouterProtocol {
+    public func newsDidSelectVC(data: MainData) -> UIViewController {
+        return NewsDidSelect(vm: NewsDidSelectViewModel(data: data), router: self)
+    }
+    
     public func aboutUsVC() -> UIViewController {
         return AboutUsVC(vm: AboutUsVCViewModel(), router: self)
     }
@@ -58,13 +61,6 @@ public class Router:RouterProtocol {
     public func signupVC() -> UIViewController {
         return SignUpVC(vm: SignUpViewModel(), router: self)
     }
-    public func createNewPasswordVC() -> UIViewController {
-        return CreateNewPasswordVC(vm: CreateNewPasswordViewModel(), router: self)
-    }
-    public func verificationVC() -> UIViewController {
-        return VerificationVC(vm: VerificationViewModel(), router: self)
-    }
-    
     public func forgotPassword() -> UIViewController {
         return ForgotPasswordVC(vm: ForgotPasswordViewModel(), router: self)
     }

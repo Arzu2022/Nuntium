@@ -86,7 +86,16 @@ class FavoriteTopicVC: BaseViewController<FavoriteTopicViewModel> {
     //MARK: UIFUNCTIONS
     @objc
     func onClickNextBtn(){
-        navigationController?.viewControllers = [TabBar()]
+        vm.requestDB.addCategory(data: vm.checkIndexPath).then { result in
+            switch result {
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            case .success(()):
+                self.vm.data = []
+                self.navigationController?.viewControllers = [TabBar()]
+                self.showToast(message: "data succesfully saved")
+            }
+        }
     }
 }
 extension FavoriteTopicVC:UICollectionViewDelegate,UICollectionViewDataSource {
@@ -94,20 +103,18 @@ extension FavoriteTopicVC:UICollectionViewDelegate,UICollectionViewDataSource {
         return vm.data.count
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            for (index, value) in vm.checkIndexPath.enumerated() {
-                if value == vm.data[indexPath.row] {
-                    vm.checkIndexPath.remove(at: index)
-                    vm.checkIndex = true
-                    break
-                }
-            }
-            if  !vm.checkIndex {
-                vm.checkIndexPath.append(vm.data[indexPath.row])
-                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "PurpleC")
-            } else {
-                vm.checkIndex = false
-                collectionView.cellForItem(at: indexPath)?.contentView.backgroundColor = UIColor(named: "textfield")
-            }
+        for (index, value) in vm.checkIndexPath.enumerated() {
+               if value == vm.data[indexPath.row] {
+                   vm.checkIndexPath.remove(at: index)
+                   vm.checkIndex = false
+                   break
+               }
+           }
+           if  vm.checkIndex {
+               vm.checkIndexPath.append(vm.data[indexPath.row])
+           } else {
+               vm.checkIndex = true
+           }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FavoriteCollectionVCell

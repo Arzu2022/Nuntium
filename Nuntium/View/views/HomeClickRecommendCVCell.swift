@@ -49,13 +49,12 @@ class HomeClickRecommendCVCell:UICollectionViewCell {
         }
         title.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(5)
-            make.right.equalTo(saveBtn.snp.left)
+            make.right.equalToSuperview().offset(-50)
             make.centerY.equalTo(saveBtn.snp.centerY)
         }
         image.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(title.snp.top).offset(-16)
-            //make.height.equalTo(200)
         }
     }
 }

@@ -15,7 +15,7 @@ class FavoriteCollectionVCell : UICollectionViewCell {
     lazy var mainText:UILabel = {
         let text = UILabel()
         text.textColor = UIColor(named: "Grey")
-        text.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        text.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return text
     }()
     override init(frame: CGRect) {

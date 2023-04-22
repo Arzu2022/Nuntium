@@ -33,7 +33,7 @@ class StorageRequest:StorageRequestProtocol {
     func addOrUpdateProfilePhoto(with photo: Data) -> Promises.Promise<Result<Void, Error>> {
         let promise = Promise<Result<Void,Error>>.pending()
         let storageRef = Storage.storage().reference().child("profile_photos").child("\( Auth.auth().currentUser?.uid ?? "qwe").jpg")
-        let uploadTask = storageRef.putData(photo, metadata: nil) { metadata, error in
+        _ = storageRef.putData(photo, metadata: nil) { metadata, error in
             if let error = error {
                 promise.fulfill(.failure(error))
             } else {
