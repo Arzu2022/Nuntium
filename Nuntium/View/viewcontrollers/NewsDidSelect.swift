@@ -14,7 +14,7 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
     }()
     private lazy var titleLabel: UILabel = {
         let text = UILabel()
-        text.numberOfLines = 2
+        text.numberOfLines = 0
         text.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         text.textColor = .white
         return text
@@ -25,6 +25,7 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         text.textColor = .white
         return text
     }()
+    
     private lazy var viewBack: UIView = {
         let view = UIView()
         view.addSubview(typeLabel)
@@ -38,13 +39,80 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
     }()
     private lazy var contentLabel: UILabel = {
         let text = UILabel()
-        
+        text.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        text.textColor = UIColor(named: "Grey")
+        text.text = "Content:"
+        return text
+    }()
+//    private lazy var resultLabel: UITextView = {
+//        let text = UITextView()
+//        text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+//        text.textColor = UIColor(named: "Grey")
+//        text.isEditable = false
+//        text.frame.size = CGSize(width: screenWidth - 40, height: 0)
+//        text.sizeToFit()
+//        return text
+//    }()
+    private lazy var resultLabel: UILabel = {
+        let text = UILabel()
+        text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        text.textColor = UIColor(named: "Grey")
+        text.numberOfLines = 0
         return text
     }()
     private lazy var shareBtn: UIButton = {
         let btn = UIButton()
         btn.setImage(UIImage(named: "share"), for: .normal)
         btn.addTarget(self, action: #selector(onClickShare), for: .touchUpInside)
+        return btn
+    }()
+    private lazy var viewBottom: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 24
+        view.layer.masksToBounds = true
+        return view
+    }()
+    private lazy var commentsCV:UICollectionView = {
+       let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 16
+        layout.itemSize = CGSize(width: screenWidth, height: 40)
+        let view = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        view.delegate = self
+        view.dataSource = self
+        view.showsVerticalScrollIndicator = false
+        view.register(CommentCVCell.self, forCellWithReuseIdentifier: "cell")
+        return view
+    }()
+    private lazy var profilePhoto:UIImageView = {
+        let image = UIImageView()
+        image.layer.cornerRadius = 24
+        image.layer.masksToBounds = true
+        return image
+    }()
+    private lazy var commentTF:UITextField = {
+        let tf = UITextField()
+        tf.autocorrectionType = .no
+        tf.setLeftPaddingPoints(10)
+        tf.layer.cornerRadius = 8
+        tf.backgroundColor = UIColor(named: "textfield")
+        tf.placeholder = "Add comment"
+        return tf
+    }()
+    private lazy var commentLabel: UILabel = {
+        let text = UILabel()
+        text.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        text.textColor = UIColor(named: "Grey")
+        text.text = "Comment:"
+        return text
+    }()
+    private lazy var addComment:UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Post", for: .normal)
+        btn.backgroundColor = UIColor(named: "PurpleC")
+        btn.layer.cornerRadius = 16
+        btn.addTarget(self, action: #selector(onClickPost), for: .touchUpInside)
         return btn
     }()
     // MARK: - Closures
@@ -54,6 +122,19 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         setup()
     }
     // MARK: - Functions
+    private func getProfileImage()->UIImage{
+        vm.requestStorage.getProfilePhoto().then { result in
+            switch result {
+            case .success(let image):
+                return image
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+                return UIImage(named: "noUser")!
+            }
+        }
+        return UIImage(named: "noUser")!
+        
+    }
     private func setData(){
         if self.vm.data.urlToImage == nil {
             backImage.image = UIImage(named: "noImage")
@@ -75,23 +156,36 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
                 }
             }.resume()
             }
-        self.titleLabel.text = vm.data.title
+        self.titleLabel.text = vm.data.description
         self.typeLabel.text = vm.data.source.name
-        self.contentLabel.text = vm.data.content
+        self.resultLabel.text = self.vm.data.content
+        DispatchQueue.main.async {
+            self.profilePhoto.image = self.getProfileImage()
+        }
     }
     private func setup(){
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationItem.backButtonTitle = nil
         navigationItem.setRightBarButton(UIBarButtonItem(title: "", image:UIImage(named: "save"),  target: self, action: #selector(onClickRightBtnNav)), animated: true)
         
         self.view.backgroundColor = .white
         self.view.addSubview(backImage)
         self.backImage.addSubview(titleLabel)
         self.backImage.addSubview(viewBack)
-        self.view.addSubview(contentLabel)
         self.backImage.addSubview(shareBtn)
+        self.view.addSubview(viewBottom)
+        self.viewBottom.addSubview(contentLabel)
+        self.viewBottom.addSubview(resultLabel)
+        self.viewBottom.addSubview(commentsCV)
         
+        self.viewBottom.addSubview(profilePhoto)
+        self.viewBottom.addSubview(commentTF)
+        self.viewBottom.addSubview(addComment)
+        self.viewBottom.addSubview(commentLabel)
+
         backImage.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
-            make.bottom.equalTo(self.view.snp.centerY).offset(-20)
+            make.bottom.equalTo(self.view.snp.centerY)
         }
         titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
@@ -101,20 +195,67 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         viewBack.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.bottom.equalTo(self.titleLabel.snp.top).offset(-8)
-            make.width.equalTo(titleLabel.text!.count)
+            make.width.equalTo(vm.data.source.name!.count*12)
             make.height.equalTo(24)
         }
         shareBtn.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-13)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
         }
-        
+        viewBottom.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(self.view.snp.centerY).offset(-20)
+        }
+        contentLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(16)
+        }
+        resultLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(self.contentLabel.snp.bottom).offset(3)
+        }
+        commentLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(resultLabel.snp.bottom).offset(8)
+        }
+        profilePhoto.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.width.height.equalTo(48)
+        }
+        addComment.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(48)
+            make.width.equalTo(72)
+        }
+        commentTF.snp.makeConstraints { make in
+            make.left.equalTo(profilePhoto.snp.right)
+            make.right.equalTo(addComment.snp.left)
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(48)
+        }
+        commentsCV.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self.commentLabel.snp.bottom).offset(8)
+            make.bottom.equalTo(addComment.snp.top).offset(-8)
+        }
 
     }
     // MARK: - UIFunctions
     @objc
+    func onClickPost(){
+        if commentTF.text == "" {
+            self.showAlert(message: "Fill comment!", error: true)
+        } else {
+            self.showToast(message: "comment posted")
+            commentTF.text = ""
+        }
+    }
+    @objc
     func onClickShare(){
-        //next time
+        self.showAlert(message: "Next update", error: true)
     }
     @objc
     private func onClickRightBtnNav(){
@@ -127,4 +268,19 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
             }
         }
     }
+}
+extension NewsDidSelect:UICollectionViewDelegate,UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return vm.comments.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CommentCVCell
+        cell.image.image = vm.comments[indexPath.row].image
+        cell.name.text = vm.comments[indexPath.row].name
+        cell.comment.text = vm.comments[indexPath.row].comment
+        return cell
+    }
+    
+    
 }

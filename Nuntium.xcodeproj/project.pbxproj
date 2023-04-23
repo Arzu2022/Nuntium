@@ -69,6 +69,8 @@
 		FABFC8F629F1DA6500BE72D2 /* DataBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8F529F1DA6500BE72D2 /* DataBaseRequest.swift */; };
 		FABFC8F829F48C9E00BE72D2 /* NewsDidSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8F729F48C9E00BE72D2 /* NewsDidSelect.swift */; };
 		FABFC8FA29F48CBE00BE72D2 /* NewsDidSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8F929F48CBE00BE72D2 /* NewsDidSelectViewModel.swift */; };
+		FABFC8FC29F5A0CE00BE72D2 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8FB29F5A0CE00BE72D2 /* CommentModel.swift */; };
+		FABFC8FE29F5A14D00BE72D2 /* CommentCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8FD29F5A14D00BE72D2 /* CommentCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +130,8 @@
 		FABFC8F529F1DA6500BE72D2 /* DataBaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseRequest.swift; sourceTree = "<group>"; };
 		FABFC8F729F48C9E00BE72D2 /* NewsDidSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDidSelect.swift; sourceTree = "<group>"; };
 		FABFC8F929F48CBE00BE72D2 /* NewsDidSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDidSelectViewModel.swift; sourceTree = "<group>"; };
+		FABFC8FB29F5A0CE00BE72D2 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		FABFC8FD29F5A14D00BE72D2 /* CommentCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +205,7 @@
 				FABFC8F329F1D1D600BE72D2 /* BookMarkCVModel.swift */,
 				FABFC8BC29EB418800BE72D2 /* ProfileCVModel.swift */,
 				FABFC8ED29F1393100BE72D2 /* NewsDTO.swift */,
+				FABFC8FB29F5A0CE00BE72D2 /* CommentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				FABFC8AA29E976B900BE72D2 /* HomeRecommendCVCell.swift */,
 				FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */,
 				FABFC8BA29EB402400BE72D2 /* ProfileCollectioVCell.swift */,
+				FABFC8FD29F5A14D00BE72D2 /* CommentCVCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 				FABFC8E529EEC6E900BE72D2 /* StorageRequest.swift in Sources */,
 				FA4DEAF229E7EFBA00EE464E /* UITextfield+Extention.swift in Sources */,
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
+				FABFC8FC29F5A0CE00BE72D2 /* CommentModel.swift in Sources */,
 				FABFC8B529EA00AD00BE72D2 /* CategoryViewModel.swift in Sources */,
 				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
 				FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */,
@@ -406,6 +413,7 @@
 				FABFC89F29E8912600BE72D2 /* FavoriteTopicViewModel.swift in Sources */,
 				FABFC8B929EA00E900BE72D2 /* ProfileViewModel.swift in Sources */,
 				FA4DEAEF29E7EC0900EE464E /* LoginViewModel.swift in Sources */,
+				FABFC8FE29F5A14D00BE72D2 /* CommentCVCell.swift in Sources */,
 				FABFC8A529E9610E00BE72D2 /* HomeCategoryCollectioVCell.swift in Sources */,
 				FABFC8EE29F1393100BE72D2 /* NewsDTO.swift in Sources */,
 				FABFC8CD29EB4D3300BE72D2 /* AboutUsViewModel.swift in Sources */,
