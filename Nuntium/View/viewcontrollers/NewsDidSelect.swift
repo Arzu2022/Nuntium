@@ -58,6 +58,7 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         text.textColor = UIColor(named: "Grey")
         text.numberOfLines = 0
+        text.text = "Sorry,there is no content about it"
         return text
     }()
     private lazy var shareBtn: UIButton = {
@@ -115,9 +116,19 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         btn.addTarget(self, action: #selector(onClickPost), for: .touchUpInside)
         return btn
     }()
-    // MARK: - Closures
+    // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        vm.getComment().then { result in
+            switch result {
+            case .success(let data):
+                self.vm.comments = data
+                self.commentsCV.reloadData()
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            }
+            self.commentLabel.text = "Comment : \(self.vm.comments.count)"
+        }
         setData()
         setup()
     }
@@ -127,15 +138,30 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
             switch result {
             case .success(let image):
                 return image
-            case .failure(let err):
-                self.showAlert(message: err.localizedDescription, error: true)
-                return UIImage(named: "noUser")!
+            case .failure(_):
+                break
             }
+            return UIImage(named: "noUser")!
         }
         return UIImage(named: "noUser")!
         
     }
     private func setData(){
+        DispatchQueue.main.async {
+            if self.vm.data.content != nil || self.vm.data.content != "" {
+                self.titleLabel.text = self.vm.data.description
+                self.typeLabel.text = self.vm.data.source.name
+                self.resultLabel.text = self.vm.data.content
+            } else {
+                self.titleLabel.text = self.vm.data.title
+                self.typeLabel.text = self.vm.data.source.name
+                self.resultLabel.text = "Sorry,there is no content about it"
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.profilePhoto.image = self.getProfileImage()
+        }
         if self.vm.data.urlToImage == nil {
             backImage.image = UIImage(named: "noImage")
         } else {
@@ -143,8 +169,7 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
 
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
-                    // Handle the error here
-                    self.showAlert(message: error.localizedDescription, error: true)
+                   self.showAlert(message: error.localizedDescription, error: true)
                     return
                 }
                 
@@ -156,16 +181,9 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
                 }
             }.resume()
             }
-        self.titleLabel.text = vm.data.description
-        self.typeLabel.text = vm.data.source.name
-        self.resultLabel.text = self.vm.data.content
-        DispatchQueue.main.async {
-            self.profilePhoto.image = self.getProfileImage()
-        }
     }
     private func setup(){
         navigationController?.navigationBar.tintColor = UIColor.white
-        navigationItem.backButtonTitle = nil
         navigationItem.setRightBarButton(UIBarButtonItem(title: "", image:UIImage(named: "save"),  target: self, action: #selector(onClickRightBtnNav)), animated: true)
         
         self.view.backgroundColor = .white
@@ -195,7 +213,11 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         viewBack.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.bottom.equalTo(self.titleLabel.snp.top).offset(-8)
-            make.width.equalTo(vm.data.source.name!.count*12)
+            if vm.data.source.name!.count <= 4 {
+                make.width.equalTo(vm.data.source.name!.count*12)
+            } else {
+                make.width.equalTo(vm.data.source.name!.count*10)
+            }
             make.height.equalTo(24)
         }
         shareBtn.snp.makeConstraints { make in
@@ -249,7 +271,18 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         if commentTF.text == "" {
             self.showAlert(message: "Fill comment!", error: true)
         } else {
-            self.showToast(message: "comment posted")
+            let data = CommentModel(image: vm.getProfileImage(), name: vm.requestAuth.name!, comment: commentTF.text!)
+            vm.requestDB.addComment(data: data, key: (vm.data.title ?? "noTitle")+(vm.data.source.name ?? "noUser")).then { result in
+                switch result {
+                case .failure(_):
+                    break
+                 //   self.showAlert(message: err.localizedDescription, error: true)
+                case .success(()):
+                    self.vm.comments.insert(data, at: 0)
+                    self.commentsCV.reloadData()
+                    self.showToast(message: "comment posted")
+                }
+            }
             commentTF.text = ""
         }
     }

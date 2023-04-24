@@ -53,6 +53,7 @@ class LanguageVC: BaseViewController<LanguageViewModel> {
     // MARK: - FUNCTIONS
     private func setup(){
         self.view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Language"
         self.view.addSubview(englishLanBtn)
         self.view.addSubview(azeirbaijanLanBtn)

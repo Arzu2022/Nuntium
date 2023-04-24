@@ -18,6 +18,7 @@ class AboutUsVC: BaseViewController<AboutUsVCViewModel> {
     }
     // MARK: - FUNCTIONS
     private func setup(){
+        navigationController?.navigationBar.tintColor = UIColor.black
         self.view.backgroundColor = .white
         self.title = "About us"
     }

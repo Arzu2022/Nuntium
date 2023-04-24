@@ -7,23 +7,15 @@
 
 import Foundation
 import UIKit
+import Promises
 class BookmarkViewModel {
     let requestDB = DataBaseRequest()
     var data: [MainData] = []
-    init() {
+    func getData()-> Promise<Result<[MainData],Error>>{
+        let promise = Promise<Result<[MainData],Error>>.pending()
         requestDB.getSaved().then { result in
-            switch result {
-            case .success(let data):
-                self.data = data
-            case .failure(let err):
-                print(err.localizedDescription)
-            }
+            promise.fulfill(result)
         }
+        return promise
     }
-//    [
-//       HomeTopicCVModel(title: "The latest situation in the presidential election", type: "POLITICS", image: UIImage(named: "test")!),
-//       HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "ART", image: UIImage(named: "test")!),
-//       HomeTopicCVModel(title: "The latest situation in the presidential election", type: "GAMING", image: UIImage(named: "test")!),
-//       HomeTopicCVModel(title: "Lorem loem loerem lroem", type: "FASION", image: UIImage(named: "test")!)
-//        ]
 }

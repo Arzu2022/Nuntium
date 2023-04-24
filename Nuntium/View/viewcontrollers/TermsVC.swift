@@ -26,6 +26,7 @@ class TermsVC: BaseViewController<TermsViewModel> {
     // MARK: - FUNCTIONS
     private func setup(){
         self.view.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Terms & Conditions"
     }
     // MARK: - UIFUNCTIONS

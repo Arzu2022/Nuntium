@@ -122,7 +122,8 @@ class ChangPasswordVC: BaseViewController<ChangePasswordViewModel> {
         self.view.addSubview(changePasswordBtn)
         self.view.addSubview(newPasswordTextField)
         self.view.addSubview(repeatPasswordTextField)
-        
+        navigationController?.navigationBar.tintColor = UIColor.black
+
         currentPasswordTextField.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)

@@ -58,7 +58,28 @@ class BookmarkVC: BaseViewController<BookmarkViewModel> {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        vm.getData().then { result in
+            switch result {
+            case .success(let data):
+                self.vm.data = data
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            }
+            self.recommendColletionV.reloadData()
+            self.setup()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        vm.getData().then { result in
+            switch result {
+            case .success(let data):
+                self.vm.data = data
+            case .failure(let err):
+                self.showAlert(message: err.localizedDescription, error: true)
+            }
+            self.recommendColletionV.reloadData()
+            self.setup()
+        }
     }
     // MARK: - FUNCTIONS
     private func isEmptyData(){
@@ -111,6 +132,9 @@ class BookmarkVC: BaseViewController<BookmarkViewModel> {
 extension BookmarkVC:UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.data.count
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(router.newsDidSelectVC(data: self.vm.data[indexPath.row]), animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeRecommendCVCell

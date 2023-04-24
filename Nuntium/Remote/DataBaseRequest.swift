@@ -15,12 +15,50 @@ protocol DataBaseRequestProtocol {
     func getCategory() -> Promise<Result<[String],Error>>
     func saveData(data:MainData) -> Promise<Result<Void,Error>>
     func getSaved() -> Promise<Result<[MainData],Error>>
+    func addComment(data:CommentModel,key:String) -> Promise<Result<Void,Error>>
+    func getComments(key:String) -> Promise<Result<[CommentModel],Error>>
 }
 class DataBaseRequest: DataBaseRequestProtocol {
     
-    
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser?.uid
+    
+    func getComments(key:String) -> Promise<Result<[CommentModel], Error>> {
+        let promise = Promise<Result<[CommentModel], Error>>.pending()
+        db.collection("comment_\(key)").getDocuments { (query, error) in
+            if let err = error {
+                promise.fulfill(.failure(err))
+            } else {
+                var data :[CommentModel] = []
+                for document in query!.documents {
+                    do {
+                        let item = try JSONDecoder().decode(CommentModel.self, from: document.data().first!.value as! Data)
+                        data.append(item)
+                    } catch let err {
+                        print(err.localizedDescription)
+                    }
+                }
+                promise.fulfill(.success(data))
+            }
+        }
+        
+        
+        return promise
+    }
+    
+    func addComment(data: CommentModel,key:String) -> Promise<Result<Void, Error>> {
+        let promise = Promise<Result<Void, Error>>.pending()
+        let jsonData = try? JSONEncoder().encode(data)
+        db.collection("comment_\(key)").addDocument(data: ["comment" : jsonData!]) { error in
+            if let err = error {
+                promise.fulfill(.failure(err))
+            } else {
+                promise.fulfill(.success(()))
+            }
+        }
+        
+        return promise
+    }
     
     func getSaved() -> Promises.Promise<Result<[MainData], Error>> {
         let promise = Promise<Result<[MainData], Error>>.pending()
@@ -31,8 +69,8 @@ class DataBaseRequest: DataBaseRequestProtocol {
                 var data :[MainData] = []
                 for document in querySnapshot!.documents {
                     do {
-                        let person = try JSONDecoder().decode(MainData.self, from: document.data().first!.value as! Data)
-                        data.append(person)
+                        let item = try JSONDecoder().decode(MainData.self, from: document.data().first!.value as! Data)
+                        data.append(item)
                     } catch let err {
                         print(err.localizedDescription)
                     }
