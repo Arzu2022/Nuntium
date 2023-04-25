@@ -46,8 +46,8 @@
             filePath = "Nuntium/View/viewcontrollers/InitalVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "Nuntium/View/viewcontrollers/InitalVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "setup()"
             landmarkType = "7">
             <Locations>
@@ -110,9 +110,9 @@
             filePath = "Nuntium/View/viewcontrollers/InitalVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "scrollViewDidScroll(_:)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -984,8 +984,8 @@
             filePath = "Nuntium/Viewmodel/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "getData(api:)"
             landmarkType = "7">
             <Locations>
@@ -1064,8 +1064,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "getSaved()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1096,8 +1096,8 @@
             filePath = "Nuntium/Viewmodel/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1112,8 +1112,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "getCategory()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1128,8 +1128,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "getCategory()"
             landmarkType = "7">
             <Locations>
@@ -1176,8 +1176,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "getCategory()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1192,8 +1192,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "saveData(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1208,8 +1208,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "saveData(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1224,8 +1224,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "saveData(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1240,8 +1240,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "saveData(data:)"
             landmarkType = "7">
             <Locations>
@@ -1329,22 +1329,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5AD404E9-56E4-4098-95BE-9D845F986092"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nuntium/Remote/DataBaseRequest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "getSaved()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "66BB5BF0-82C0-4F18-8D3B-2F54137E1258"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1352,8 +1336,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "getSaved()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1368,8 +1352,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "getSaved()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1384,8 +1368,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "getSaved()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1400,8 +1384,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1416,8 +1400,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1432,8 +1416,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
             <Locations>
@@ -1480,8 +1464,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1496,8 +1480,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1512,8 +1496,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1528,8 +1512,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1544,8 +1528,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1560,8 +1544,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1576,8 +1560,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1592,8 +1576,8 @@
             filePath = "Nuntium/Remote/DataBaseRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "getComments(key:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1608,8 +1592,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1624,8 +1608,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1640,8 +1624,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1656,8 +1640,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1672,8 +1656,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1688,8 +1672,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1704,8 +1688,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1720,8 +1704,8 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "setData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1736,9 +1720,121 @@
             filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "setData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86FE94FC-E017-48C1-B7BC-C309AECD30D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/Remote/NewsRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "getData(api:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "469B7C3B-8DD0-4DA1-8F3A-158934740D46"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "getProfileImage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5ABEFDC5-DF24-41D7-95BD-5B2785D62CBB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/View/viewcontrollers/NewsDidSelect.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "getProfileImage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2427AE8-2070-49B0-BD5E-C745D8318CFC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/Remote/StorageRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "getProfilePhoto()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62344C12-A7A2-4B11-A4D2-2BFA4A76EE4E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/Remote/StorageRequest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getProfilePhoto()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F632265D-2082-47BA-831D-630B7B76D24D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/View/viewcontrollers/BookmarkVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "collectionViewCell(_:didTapItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1E3B081A-CD28-4336-B51E-6F2B8B4782BC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nuntium/View/viewcontrollers/BookmarkVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "collectionViewCell(_:indexPathForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -44,15 +44,6 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         text.text = "Content:"
         return text
     }()
-//    private lazy var resultLabel: UITextView = {
-//        let text = UITextView()
-//        text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
-//        text.textColor = UIColor(named: "Grey")
-//        text.isEditable = false
-//        text.frame.size = CGSize(width: screenWidth - 40, height: 0)
-//        text.sizeToFit()
-//        return text
-//    }()
     private lazy var resultLabel: UILabel = {
         let text = UILabel()
         text.font = UIFont.systemFont(ofSize: 18, weight: .regular)
@@ -133,20 +124,20 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         setup()
     }
     // MARK: - Functions
-    private func getProfileImage()->UIImage{
+    private func getProfileImage() {
         vm.requestStorage.getProfilePhoto().then { result in
             switch result {
             case .success(let image):
-                return image
+                self.profilePhoto.image = image
             case .failure(_):
-                break
+                self.profilePhoto.image = UIImage(named: "noUser")
             }
-            return UIImage(named: "noUser")!
+
         }
-        return UIImage(named: "noUser")!
-        
     }
     private func setData(){
+        getProfileImage()
+        
         DispatchQueue.main.async {
             if self.vm.data.content != nil || self.vm.data.content != "" {
                 self.titleLabel.text = self.vm.data.description
@@ -157,10 +148,6 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
                 self.typeLabel.text = self.vm.data.source.name
                 self.resultLabel.text = "Sorry,there is no content about it"
             }
-        }
-        
-        DispatchQueue.main.async {
-            self.profilePhoto.image = self.getProfileImage()
         }
         if self.vm.data.urlToImage == nil {
             backImage.image = UIImage(named: "noImage")
@@ -190,7 +177,7 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         self.view.addSubview(backImage)
         self.backImage.addSubview(titleLabel)
         self.backImage.addSubview(viewBack)
-        self.backImage.addSubview(shareBtn)
+        self.view.addSubview(shareBtn)
         self.view.addSubview(viewBottom)
         self.viewBottom.addSubview(contentLabel)
         self.viewBottom.addSubview(resultLabel)
@@ -271,16 +258,16 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
         if commentTF.text == "" {
             self.showAlert(message: "Fill comment!", error: true)
         } else {
-            let data = CommentModel(image: vm.getProfileImage(), name: vm.requestAuth.name!, comment: commentTF.text!)
+            let data = CommentModel(image: (profilePhoto.image ?? UIImage(named: "noUser"))!, name: vm.requestAuth.name!, comment: commentTF.text!)
             vm.requestDB.addComment(data: data, key: (vm.data.title ?? "noTitle")+(vm.data.source.name ?? "noUser")).then { result in
                 switch result {
                 case .failure(_):
                     break
-                 //   self.showAlert(message: err.localizedDescription, error: true)
                 case .success(()):
                     self.vm.comments.insert(data, at: 0)
                     self.commentsCV.reloadData()
                     self.showToast(message: "comment posted")
+                    self.commentLabel.text = "Comment : \(self.vm.comments.count)"
                 }
             }
             commentTF.text = ""
@@ -288,7 +275,15 @@ class NewsDidSelect: BaseViewController<NewsDidSelectViewModel> {
     }
     @objc
     func onClickShare(){
-        self.showAlert(message: "Next update", error: true)
+        if let url = URL(string: vm.data.url!) {
+            let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+            if let popoverPresentationController = activityViewController.popoverPresentationController {
+                popoverPresentationController.sourceView = self.view
+                popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverPresentationController.permittedArrowDirections = []
+            }
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     @objc
     private func onClickRightBtnNav(){
@@ -314,6 +309,8 @@ extension NewsDidSelect:UICollectionViewDelegate,UICollectionViewDataSource {
         cell.comment.text = vm.comments[indexPath.row].comment
         return cell
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
 }

@@ -9,7 +9,16 @@ import UIKit
 
 class AboutUsVC: BaseViewController<AboutUsVCViewModel> {
 
-    
+    private lazy var aboutUs:UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.text = NSLocalizedString("aboutUs", comment: "")
+        textView.sizeToFit()
+        textView.isScrollEnabled = true
+        textView.textColor = .black
+        textView.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return textView
+    }()
     // MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +27,17 @@ class AboutUsVC: BaseViewController<AboutUsVCViewModel> {
     }
     // MARK: - FUNCTIONS
     private func setup(){
-        navigationController?.navigationBar.tintColor = UIColor.black
         self.view.backgroundColor = .white
         self.title = "About us"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "PurpleC")
+
+        self.view.addSubview(aboutUs)
+        aboutUs.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(8)
+            make.bottom.equalToSuperview().offset(-20)
+        }
     }
     // MARK: - UIFUNCTIONS
 

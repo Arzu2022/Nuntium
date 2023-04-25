@@ -53,7 +53,7 @@ class BookmarkVC: BaseViewController<BookmarkViewModel> {
         view.delegate = self
         view.dataSource = self
         view.showsVerticalScrollIndicator = false
-        view.register(HomeRecommendCVCell.self, forCellWithReuseIdentifier: "cell")
+        view.register(BookmarkCVCell.self, forCellWithReuseIdentifier: "cell")
         return view
     }()
     override func viewDidLoad() {
@@ -125,11 +125,42 @@ class BookmarkVC: BaseViewController<BookmarkViewModel> {
             }
         }
     }
+    private func showSuggest(id:String) {
+        var alert:UIAlertController
+        alert = UIAlertController(title: "Do you want to remove?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .default,handler: { _ in
+            self.vm.requestDB.removeSaved(id: id).then { result in
+                switch result {
+                case .failure(let err):
+                    self.showAlert(message: err.localizedDescription, error: true)
+                case .success(()):
+                    self.vm.getData().then { result in
+                        switch result {
+                        case .success(let data):
+                            self.vm.data = data
+                        case .failure(_):
+                            break
+                        }
+                        self.recommendColletionV.reloadData()
+                    }
+                    self.showToast(message: "removed successfully")
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+        }
     // MARK: - UIFUNCTIONS
 
-
 }
-extension BookmarkVC:UICollectionViewDelegate,UICollectionViewDataSource {
+extension BookmarkVC:UICollectionViewDelegate,UICollectionViewDataSource,BookmarkCVCellDelegate {
+    func collectionViewCell(_ cell: BookmarkCVCell, indexPathForItemAt location: CGPoint) -> IndexPath? {
+        return recommendColletionV.indexPathForItem(at: location)
+    }
+    
+    func collectionViewCell(_ cell: BookmarkCVCell, didTapItemAt indexPath: IndexPath) {
+        self.showSuggest(id:vm.data[indexPath.row].source.id!)
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm.data.count
     }
@@ -137,7 +168,9 @@ extension BookmarkVC:UICollectionViewDelegate,UICollectionViewDataSource {
         self.navigationController?.pushViewController(router.newsDidSelectVC(data: self.vm.data[indexPath.row]), animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeRecommendCVCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BookmarkCVCell
+
+        cell.delegate = self
         cell.title.text = vm.data[indexPath.row].title
         cell.type.text = vm.data[indexPath.row].source.name
         if self.vm.data[indexPath.row].urlToImage == nil {

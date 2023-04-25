@@ -219,7 +219,7 @@ class LoginVC: BaseViewController<LoginViewModel> {
     //MARK: UIFUNCTIONS
     @objc
     func onClickForgotBtn(){
-        self.showToastForWait(message: "Please, check your mail for verification new password")
+        navigationController?.viewControllers = [router.forgotPassword()]
     }
     @objc
     func onClickLoginBtn(){
@@ -267,7 +267,7 @@ class LoginVC: BaseViewController<LoginViewModel> {
 }
 extension LoginVC:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == mailTextField{
+        if textField == mailTextField {
                 changeTexfieldColor(textField: mailTextField)
         }
         else if textField == passwordTextField {

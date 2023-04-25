@@ -9,25 +9,34 @@ import UIKit
 
 class TermsVC: BaseViewController<TermsViewModel> {
 
-    private lazy var gmailLabel:UILabel = {
-        let text = UILabel()
-        text.text = ""
-        text.textColor = UIColor(named:"Grey")
-        text.numberOfLines = 0
-        text.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        return text
+    private lazy var termsTV:UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.text = NSLocalizedString("terms", comment: "Terms and Conditions")
+        textView.sizeToFit()
+        textView.isScrollEnabled = true
+        textView.textColor = .black
+        textView.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        return textView
     }()
     // MARK: - VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        // Do any additional setup after loading the view.
     }
     // MARK: - FUNCTIONS
     private func setup(){
         self.view.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Terms & Conditions"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "PurpleC")
+
+        self.view.addSubview(termsTV)
+        termsTV.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(8)
+            make.bottom.equalToSuperview().offset(-20)
+        }
     }
     // MARK: - UIFUNCTIONS
 

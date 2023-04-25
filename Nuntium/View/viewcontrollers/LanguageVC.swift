@@ -33,7 +33,7 @@ class LanguageVC: BaseViewController<LanguageViewModel> {
     }()
     private lazy var russionLanBtn:UIButton = {
         let btn = UIButton()
-        btn.setTitle("Russion", for: .normal)
+        btn.setTitle("Russian", for: .normal)
         btn.setTitleColor(UIColor(named: "Grey"), for: .normal)
         btn.backgroundColor = UIColor(named: "textfield")
         btn.layer.cornerRadius = 12
@@ -48,13 +48,12 @@ class LanguageVC: BaseViewController<LanguageViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        // Do any additional setup after loading the view.
     }
     // MARK: - FUNCTIONS
     private func setup(){
         self.view.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Language"
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "PurpleC")
         self.view.addSubview(englishLanBtn)
         self.view.addSubview(azeirbaijanLanBtn)
         self.view.addSubview(russionLanBtn)

@@ -28,7 +28,6 @@ class HomeViewModel {
                     let t = i.components(separatedBy: "  ")
                     self.categoryCollectionVdata.append(t[1])
                 }
-                //self.categoryCollectionVdata = data
             case .failure(let err):
                 print(err)
             }

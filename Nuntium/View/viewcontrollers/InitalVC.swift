@@ -35,6 +35,10 @@ class InitalVC: BaseViewController<InitialViewModel> {
     //MARK: VIEW DID LOAD
     override func viewDidLoad() {
         super.viewDidLoad()
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(item: 1, section: 0)
+            self.collectionV.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        }
         setup()
     }
     //MARK: FUNCTIONS

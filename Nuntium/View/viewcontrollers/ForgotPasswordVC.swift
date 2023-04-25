@@ -128,7 +128,7 @@ class ForgotPasswordVC: BaseViewController<ForgotPasswordViewModel> {
                 switch result {
                 case .success(()):
                     self.navigationController?.viewControllers = [self.router.loginVC()]
-                    self.showToast(message: "Please,check email for creating new password")
+                    self.showToastForWait(message: "Please, check your mail for verification new password")
                 case .failure(let err):
                     self.showAlert(message: err.localizedDescription, error: true)
                 }

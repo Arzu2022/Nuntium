@@ -71,6 +71,8 @@
 		FABFC8FA29F48CBE00BE72D2 /* NewsDidSelectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8F929F48CBE00BE72D2 /* NewsDidSelectViewModel.swift */; };
 		FABFC8FC29F5A0CE00BE72D2 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8FB29F5A0CE00BE72D2 /* CommentModel.swift */; };
 		FABFC8FE29F5A14D00BE72D2 /* CommentCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC8FD29F5A14D00BE72D2 /* CommentCVCell.swift */; };
+		FABFC90029F7BED100BE72D2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FABFC8FF29F7BED100BE72D2 /* Localizable.strings */; };
+		FABFC90229F7CCC500BE72D2 /* BookmarkCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABFC90129F7CCC500BE72D2 /* BookmarkCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +134,8 @@
 		FABFC8F929F48CBE00BE72D2 /* NewsDidSelectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDidSelectViewModel.swift; sourceTree = "<group>"; };
 		FABFC8FB29F5A0CE00BE72D2 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		FABFC8FD29F5A14D00BE72D2 /* CommentCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCVCell.swift; sourceTree = "<group>"; };
+		FABFC8FF29F7BED100BE72D2 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FABFC90129F7CCC500BE72D2 /* BookmarkCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,7 @@
 				FA4DEAC729E690CF00EE464E /* Assets.xcassets */,
 				FA4DEACC29E690CF00EE464E /* Info.plist */,
 				FABFC8D929ED25A700BE72D2 /* GoogleService-Info.plist */,
+				FABFC8FF29F7BED100BE72D2 /* Localizable.strings */,
 			);
 			path = Nuntium;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				FABFC8AC29E97BEB00BE72D2 /* HomeClickRecommendCVCell.swift */,
 				FABFC8BA29EB402400BE72D2 /* ProfileCollectioVCell.swift */,
 				FABFC8FD29F5A14D00BE72D2 /* CommentCVCell.swift */,
+				FABFC90129F7CCC500BE72D2 /* BookmarkCVCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -367,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA4DEACB29E690CF00EE464E /* LaunchScreen.storyboard in Resources */,
+				FABFC90029F7BED100BE72D2 /* Localizable.strings in Resources */,
 				FA4DEAC829E690CF00EE464E /* Assets.xcassets in Resources */,
 				FABFC8DA29ED25A800BE72D2 /* GoogleService-Info.plist in Resources */,
 			);
@@ -391,6 +398,7 @@
 				FA4DEAC329E690C900EE464E /* HomeVC.swift in Sources */,
 				FABFC8FC29F5A0CE00BE72D2 /* CommentModel.swift in Sources */,
 				FABFC8B529EA00AD00BE72D2 /* CategoryViewModel.swift in Sources */,
+				FABFC90229F7CCC500BE72D2 /* BookmarkCVCell.swift in Sources */,
 				FA4DEAEB29E6C0AE00EE464E /* InitialCollectionVCell.swift in Sources */,
 				FA4DEAF629E8224000EE464E /* ForgotPasswordVC.swift in Sources */,
 				FA4DEAED29E7EBF000EE464E /* LoginVC.swift in Sources */,

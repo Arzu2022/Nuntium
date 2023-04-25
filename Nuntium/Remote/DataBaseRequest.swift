@@ -15,6 +15,7 @@ protocol DataBaseRequestProtocol {
     func getCategory() -> Promise<Result<[String],Error>>
     func saveData(data:MainData) -> Promise<Result<Void,Error>>
     func getSaved() -> Promise<Result<[MainData],Error>>
+    func removeSaved(id:String) -> Promise<Result<Void,Error>>
     func addComment(data:CommentModel,key:String) -> Promise<Result<Void,Error>>
     func getComments(key:String) -> Promise<Result<[CommentModel],Error>>
 }
@@ -22,6 +23,18 @@ class DataBaseRequest: DataBaseRequestProtocol {
     
     private let db = Firestore.firestore()
     private let userID = Auth.auth().currentUser?.uid
+    
+    func removeSaved(id: String) -> Promises.Promise<Result<Void, Error>> {
+        let promise = Promise<Result<Void, Error>>.pending()
+        db.collection("saved_\(userID ?? "nouser")").document(id).delete { error in
+            if let err = error {
+                promise.fulfill(.failure(err))
+            } else {
+                promise.fulfill(.success(()))
+            }
+        }
+        return promise
+    }
     
     func getComments(key:String) -> Promise<Result<[CommentModel], Error>> {
         let promise = Promise<Result<[CommentModel], Error>>.pending()
@@ -67,16 +80,16 @@ class DataBaseRequest: DataBaseRequestProtocol {
                 promise.fulfill(.failure(err))
             } else {
                 var data :[MainData] = []
-                for document in querySnapshot!.documents {
+                for (index,document) in querySnapshot!.documents.enumerated() {
                     do {
                         let item = try JSONDecoder().decode(MainData.self, from: document.data().first!.value as! Data)
                         data.append(item)
+                        data[index].source.id = document.documentID
                     } catch let err {
                         print(err.localizedDescription)
                     }
                 }
                 promise.fulfill(.success(data))
-
             }
         }
         return promise

@@ -12,7 +12,7 @@ public struct NewsDTO:Codable{
    public let articles:[MainData]
 }
 public struct MainData:Codable {
-    let source:Source
+    var source:Source
     let author:String?
     let title:String?
     let description:String?
@@ -22,6 +22,6 @@ public struct MainData:Codable {
     let content:String?
 }
 struct Source:Codable{
-    let id:String?
-    let name:String?
+    var id:String?
+    var name:String?
 }
